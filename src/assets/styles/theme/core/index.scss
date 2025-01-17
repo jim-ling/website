@@ -1,0 +1,8 @@
+
+@use "./layouts.scss";
+@use "./element-plus.scss";
+
+.#{$theme-name} {
+  @include layouts.all;
+  @include element-plus.all;
+}

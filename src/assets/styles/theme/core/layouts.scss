@@ -1,0 +1,36 @@
+// src/assets/styles/theme/core/layouts.scss
+@use '../variables.scss' as vars;
+@use 'sass:color';
+
+.app-wrapper {
+  // 侧边栏
+  .sidebar-container {
+    background-color: var(--el-bg-color);
+    .el-menu {
+      background-color: var(--el-bg-color);
+      .el-menu-item {
+        background-color: var(--el-bg-color);
+        &.is-active,
+        &:hover {
+          background-color: var(--el-bg-color-overlay);
+          color: #ffffff;
+        }
+      }
+    }
+    .el-sub-menu__title {
+      background-color: var(--el-bg-color);
+    }
+    .el-sub-menu {
+      &.is-active {
+        > .el-sub-menu__title {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+// 右侧设置面板
+.handle-button {
+  background-color: color.adjust(vars.$theme-bg-color, $lightness: 20%) !important;
+}
