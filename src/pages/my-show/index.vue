@@ -10,17 +10,17 @@
   
 <script lang="ts" setup>
 // import triangulate from 'delaunay-triangulate'
-import { triangulate } from './triangulate'
+import { triangulate, randomRange, clamp, sign, Fragment } from './triangulate'
 import { gsap } from 'gsap'
 
 let vertices = [] as any[]
 let indices = [] as any[]
-const fragments = ref([])
+const fragments = [] as any[]
 let image = new Image()
 let images = []
 let imageIndex = 0
 let content
-let container
+let container = null as any
 const TWO_PI = Math.PI * 2
 
 image.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/dj.jpg'
@@ -37,7 +37,7 @@ const imagesLoaded = () => {
     shatter()
 }
 
-const placeImage = (transitionIn) => {
+const placeImage = (transitionIn: boolean) => {
     container.appendChild(image)
     if (transitionIn !== false) {
         // 淡出弹窗
@@ -49,7 +49,7 @@ const placeImage = (transitionIn) => {
     }
 }
 
-const imageClickHandler = (event) => {
+const imageClickHandler = (event: any) => {
     let box = image.getBoundingClientRect(),
         top = box.top,
         left = box.left
@@ -104,8 +104,8 @@ const shatter = () => {
             const p1 = vertices[indices[i + 1]]
             const p2 = vertices[indices[i + 2]]
 
-            const fragment = new Fragment(p0, p1, p2)
-            fragments.value.push(fragment)
+            const fragment = new Fragment(p0, p1, p2, image)
+            fragments.push(fragment)
             container.appendChild(fragment.canvas)
             const dx = fragment.centroid[0] - clickPosition[0]
             const dy = fragment.centroid[1] - clickPosition[1]
@@ -132,75 +132,13 @@ const shatter = () => {
 }
 
 const shatterCompleteHandler = () => {
-    fragments.value.forEach((fragment) => {
+    fragments.forEach((fragment) => {
         container.removeChild(fragment.canvas)
     })
-    fragments.value.length = 0
+    fragments.length = 0
     vertices.length = 0
     indices.length = 0
-    placeImage()
-}
-
-const randomRange = (min, max) => min + (max - min) * Math.random()
-const clamp = (x, min, max) => (x < min ? min : x > max ? max : x)
-const sign = (x) => (x < 0 ? -1 : 1)
-
-class Fragment {
-    constructor(v0, v1, v2) {
-        this.v0 = v0
-        this.v1 = v1
-        this.v2 = v2
-
-        this.computeBoundingBox()
-        this.computeCentroid()
-        this.createCanvas()
-        this.clip()
-    }
-
-    computeBoundingBox() {
-        const xMin = Math.min(this.v0[0], this.v1[0], this.v2[0])
-        const xMax = Math.max(this.v0[0], this.v1[0], this.v2[0])
-        const yMin = Math.min(this.v0[1], this.v1[1], this.v2[1])
-        const yMax = Math.max(this.v0[1], this.v1[1], this.v2[1])
-
-        this.box = {
-            x: xMin,
-            y: yMin,
-            w: xMax - xMin,
-            h: yMax - yMin
-        }
-    }
-
-    computeCentroid() {
-        const x = (this.v0[0] + this.v1[0] + this.v2[0]) / 3
-        const y = (this.v0[1] + this.v1[1] + this.v2[1]) / 3
-
-        this.centroid = [x, y]
-    }
-
-    createCanvas() {
-        this.canvas = document.createElement('canvas')
-        this.canvas.width = this.box.w
-        this.canvas.height = this.box.h
-        this.canvas.style.width = `${this.box.w}px`
-        this.canvas.style.height = `${this.box.h}px`
-        this.canvas.style.left = `${this.box.x}px`
-        this.canvas.style.top = `${this.box.y}px`
-        this.canvas.style.position = 'absolute'
-        this.canvas.style.opacity = 1
-        this.ctx = this.canvas.getContext('2d')
-    }
-
-    clip() {
-        this.ctx.translate(-this.box.x, -this.box.y)
-        this.ctx.beginPath()
-        this.ctx.moveTo(this.v0[0], this.v0[1])
-        this.ctx.lineTo(this.v1[0], this.v1[1])
-        this.ctx.lineTo(this.v2[0], this.v2[1])
-        this.ctx.closePath()
-        this.ctx.clip()
-        this.ctx.drawImage(image, 0, 0)
-    }
+    placeImage(true)
 }
 
 onMounted(() => {
