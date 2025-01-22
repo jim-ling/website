@@ -28,3 +28,6 @@ npm install js-cookie
 npm install vite-svg-loader --save
 
 npm install --save-dev @vitejs/plugin-vue @babel/core @babel/preset-env
+
+npm install gsap
+npm install delaunay-triangulate

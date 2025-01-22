@@ -65,7 +65,7 @@ export const leftBarRoutes: RouteRecordRaw[] = [
         children: [
           {
             path: "Home",
-            component: () => import("@/pages/dashboard/index.vue"),
+            component: () => import("@/pages/my-show/index.vue"),
             name: "Dashboard",
             meta: {
               title: "首页",
