@@ -1,0 +1,856 @@
+/* 全局样式 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* 主题样式 - 清晰版本 */
+/* 科技风格主题 - 赛博朋克风格 */
+html.theme-tech {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+html.theme-tech body {
+  background: transparent;
+  color: #00ffff;
+  font-family: 'Courier New', 'Monaco', monospace;
+}
+
+/* 樱花风格主题 - 樱花飘落效果 */
+html.theme-sakura {
+  background: linear-gradient(135deg, #fef7f7 0%, #fce7e7 50%, #f8d7da 100%);
+}
+
+html.theme-sakura body {
+  background: transparent;
+  color: #8b1538;
+  font-family: 'KaiTi', 'STKaiti', serif;
+}
+
+/* 水墨风格主题 - 水墨晕染效果 */
+html.theme-ink {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+}
+
+html.theme-ink body {
+  background: transparent;
+  color: #2c3e50;
+  font-family: 'STSong', 'SimSun', 'KaiTi', serif;
+  font-weight: 500;
+}
+
+/* 确保所有文字清晰可见 */
+html.theme-tech *,
+html.theme-sakura *,
+html.theme-ink * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 统一字体大小 */
+html.theme-tech h1, html.theme-sakura h1, html.theme-ink h1,
+html.theme-tech .hero-title, html.theme-sakura .hero-title, html.theme-ink .hero-title,
+html.theme-tech .page-title, html.theme-sakura .page-title, html.theme-ink .page-title {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+html.theme-tech h2, html.theme-sakura h2, html.theme-ink h2,
+html.theme-tech .section-title, html.theme-sakura .section-title, html.theme-ink .section-title {
+  font-size: 2.5rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+html.theme-tech h3, html.theme-sakura h3, html.theme-ink h3 {
+  font-size: 1.8rem;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+}
+
+html.theme-tech p, html.theme-sakura p, html.theme-ink p,
+html.theme-tech .hero-description, html.theme-sakura .hero-description, html.theme-ink .hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* 科技风格文字增强 */
+html.theme-tech h1,
+html.theme-tech h2,
+html.theme-tech h3,
+html.theme-tech .hero-title,
+html.theme-tech .page-title {
+  color: #00ffff !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  font-weight: bold;
+}
+
+html.theme-tech p,
+html.theme-tech span,
+html.theme-tech div,
+html.theme-tech .text-content,
+html.theme-tech .description,
+html.theme-tech .content,
+html.theme-tech .article-content,
+html.theme-tech .blog-content {
+  color: #e2e8f0 !important;
+}
+
+/* 确保所有链接和按钮文字清晰 */
+html.theme-tech a,
+html.theme-tech button,
+html.theme-tech .btn,
+html.theme-tech .link {
+  color: #00ffff !important;
+}
+
+/* 确保表单元素文字清晰 */
+html.theme-tech input,
+html.theme-tech textarea,
+html.theme-tech select,
+html.theme-tech .el-input__inner,
+html.theme-tech .el-textarea__inner {
+  color: #e2e8f0 !important;
+  background: rgba(0, 255, 255, 0.1) !important;
+}
+
+/* 确保卡片和容器内的文字清晰 */
+html.theme-tech .card,
+html.theme-tech .container,
+html.theme-tech .wrapper,
+html.theme-tech .section {
+  color: #e2e8f0 !important;
+}
+
+/* 确保列表项文字清晰 */
+html.theme-tech li,
+html.theme-tech ul,
+html.theme-tech ol {
+  color: #e2e8f0 !important;
+}
+
+/* 确保表格文字清晰 */
+html.theme-tech table,
+html.theme-tech td,
+html.theme-tech th {
+  color: #e2e8f0 !important;
+}
+
+/* 确保代码块文字清晰 */
+html.theme-tech code,
+html.theme-tech pre {
+  color: #00ff7f !important;
+  background: rgba(0, 255, 255, 0.1) !important;
+}
+
+/* 确保引用文字清晰 */
+html.theme-tech blockquote {
+  color: #e2e8f0 !important;
+  border-left: 4px solid #00ffff !important;
+}
+
+/* 确保小文字和辅助文字清晰 */
+html.theme-tech small,
+html.theme-tech .small,
+html.theme-tech .text-sm,
+html.theme-tech .text-xs,
+html.theme-tech .meta,
+html.theme-tech .subtitle,
+html.theme-tech .caption {
+  color: #cbd5e0 !important;
+}
+
+/* 确保强调文字清晰 */
+html.theme-tech strong,
+html.theme-tech b,
+html.theme-tech .font-bold,
+html.theme-tech .font-semibold {
+  color: #00ffff !important;
+}
+
+/* 确保斜体文字清晰 */
+html.theme-tech em,
+html.theme-tech i,
+html.theme-tech .italic {
+  color: #e2e8f0 !important;
+}
+
+/* 确保标签和徽章文字清晰 */
+html.theme-tech .tag,
+html.theme-tech .badge,
+html.theme-tech .label {
+  color: #e2e8f0 !important;
+  background: rgba(0, 255, 255, 0.2) !important;
+}
+
+/* 确保导航文字清晰 */
+html.theme-tech .nav,
+html.theme-tech .navbar,
+html.theme-tech .menu {
+  color: #e2e8f0 !important;
+}
+
+/* 确保页脚文字清晰 */
+html.theme-tech .footer,
+html.theme-tech footer {
+  color: #e2e8f0 !important;
+}
+
+/* 确保侧边栏文字清晰 */
+html.theme-tech .sidebar,
+html.theme-tech .aside {
+  color: #e2e8f0 !important;
+}
+
+/* 确保面包屑导航文字清晰 */
+html.theme-tech .breadcrumb {
+  color: #e2e8f0 !important;
+}
+
+/* 确保分页文字清晰 */
+html.theme-tech .pagination {
+  color: #e2e8f0 !important;
+}
+
+/* 确保工具提示文字清晰 */
+html.theme-tech .tooltip {
+  color: #e2e8f0 !important;
+  background: rgba(0, 255, 255, 0.9) !important;
+}
+
+/* 确保模态框文字清晰 */
+html.theme-tech .modal,
+html.theme-tech .dialog {
+  color: #e2e8f0 !important;
+}
+
+/* 确保警告和提示文字清晰 */
+html.theme-tech .alert,
+html.theme-tech .notice,
+html.theme-tech .message {
+  color: #e2e8f0 !important;
+}
+
+/* 确保时间和日期文字清晰 */
+html.theme-tech .time,
+html.theme-tech .date,
+html.theme-tech .datetime {
+  color: #cbd5e0 !important;
+}
+
+/* 确保统计数字清晰 */
+html.theme-tech .number,
+html.theme-tech .count,
+html.theme-tech .stat {
+  color: #00ffff !important;
+}
+
+/* 确保价格和金额文字清晰 */
+html.theme-tech .price,
+html.theme-tech .amount,
+html.theme-tech .currency {
+  color: #00ff7f !important;
+}
+
+/* 确保状态文字清晰 */
+html.theme-tech .status,
+html.theme-tech .state {
+  color: #e2e8f0 !important;
+}
+
+/* 确保评分和评价文字清晰 */
+html.theme-tech .rating,
+html.theme-tech .review,
+html.theme-tech .comment {
+  color: #e2e8f0 !important;
+}
+
+/* 确保搜索结果文字清晰 */
+html.theme-tech .search-result,
+html.theme-tech .result {
+  color: #e2e8f0 !important;
+}
+
+/* 确保加载和错误文字清晰 */
+html.theme-tech .loading,
+html.theme-tech .error,
+html.theme-tech .success,
+html.theme-tech .warning {
+  color: #e2e8f0 !important;
+}
+
+/* 确保所有Element Plus组件文字清晰 */
+html.theme-tech .el-button,
+html.theme-tech .el-card,
+html.theme-tech .el-table,
+html.theme-tech .el-form,
+html.theme-tech .el-dialog,
+html.theme-tech .el-menu,
+html.theme-tech .el-tabs,
+html.theme-tech .el-pagination {
+  color: #e2e8f0 !important;
+}
+
+/* 确保所有自定义类文字清晰 */
+html.theme-tech .text-white {
+  color: #e2e8f0 !important;
+}
+
+html.theme-tech .text-gray-100,
+html.theme-tech .text-gray-200,
+html.theme-tech .text-gray-300 {
+  color: #e2e8f0 !important;
+}
+
+html.theme-tech .text-gray-400,
+html.theme-tech .text-gray-500 {
+  color: #cbd5e0 !important;
+}
+
+html.theme-tech .text-gray-600,
+html.theme-tech .text-gray-700,
+html.theme-tech .text-gray-800,
+html.theme-tech .text-gray-900 {
+  color: #e2e8f0 !important;
+}
+
+/* 确保所有可能的白色文字都变为可见 */
+html.theme-tech [style*="color: white"],
+html.theme-tech [style*="color: #fff"],
+html.theme-tech [style*="color: #ffffff"],
+html.theme-tech [style*="color: rgb(255, 255, 255)"] {
+  color: #e2e8f0 !important;
+}
+
+/* 樱花风格文字增强 */
+html.theme-sakura h1,
+html.theme-sakura h2,
+html.theme-sakura h3,
+html.theme-sakura .hero-title,
+html.theme-sakura .page-title {
+  color: #8b1538 !important;
+  font-weight: bold;
+}
+
+html.theme-sakura p,
+html.theme-sakura span,
+html.theme-sakura div,
+html.theme-sakura .text-content,
+html.theme-sakura .description,
+html.theme-sakura .content,
+html.theme-sakura .article-content,
+html.theme-sakura .blog-content,
+html.theme-sakura a,
+html.theme-sakura button,
+html.theme-sakura .btn,
+html.theme-sakura .link,
+html.theme-sakura input,
+html.theme-sakura textarea,
+html.theme-sakura select,
+html.theme-sakura .card,
+html.theme-sakura .container,
+html.theme-sakura .wrapper,
+html.theme-sakura .section,
+html.theme-sakura li,
+html.theme-sakura ul,
+html.theme-sakura ol,
+html.theme-sakura table,
+html.theme-sakura td,
+html.theme-sakura th,
+html.theme-sakura small,
+html.theme-sakura .small,
+html.theme-sakura .text-sm,
+html.theme-sakura .meta,
+html.theme-sakura .subtitle,
+html.theme-sakura em,
+html.theme-sakura i,
+html.theme-sakura .italic {
+  color: #8b1538 !important;
+}
+
+/* 水墨风格文字增强 */
+html.theme-ink h1,
+html.theme-ink h2,
+html.theme-ink h3,
+html.theme-ink .hero-title,
+html.theme-ink .page-title {
+  color: #2c3e50 !important;
+  font-weight: bold;
+}
+
+html.theme-ink p,
+html.theme-ink span,
+html.theme-ink div,
+html.theme-ink .text-content,
+html.theme-ink .description,
+html.theme-ink .content,
+html.theme-ink .article-content,
+html.theme-ink .blog-content,
+html.theme-ink a,
+html.theme-ink button,
+html.theme-ink .btn,
+html.theme-ink .link,
+html.theme-ink input,
+html.theme-ink textarea,
+html.theme-ink select,
+html.theme-ink .card,
+html.theme-ink .container,
+html.theme-ink .wrapper,
+html.theme-ink .section,
+html.theme-ink li,
+html.theme-ink ul,
+html.theme-ink ol,
+html.theme-ink table,
+html.theme-ink td,
+html.theme-ink th,
+html.theme-ink small,
+html.theme-ink .small,
+html.theme-ink .text-sm,
+html.theme-ink .meta,
+html.theme-ink .subtitle,
+html.theme-ink em,
+html.theme-ink i,
+html.theme-ink .italic {
+  color: #2c3e50 !important;
+}
+
+/* 主题动画效果 */
+@keyframes cyber-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    filter: hue-rotate(90deg);
+  }
+}
+
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(-100px) translateX(-50px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(25vh) translateX(50px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-30px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(75vh) translateX(40px) rotate(270deg);
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px)) translateX(-20px) rotate(360deg);
+  }
+}
+
+@keyframes ink-flow {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 科技风格滚动条 */
+html.theme-tech ::-webkit-scrollbar-track {
+  background: rgba(0, 255, 255, 0.1);
+}
+
+html.theme-tech ::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+html.theme-tech ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.5);
+}
+
+/* 樱花风格滚动条 */
+html.theme-sakura ::-webkit-scrollbar-track {
+  background: rgba(139, 21, 56, 0.1);
+}
+
+html.theme-sakura ::-webkit-scrollbar-thumb {
+  background: rgba(139, 21, 56, 0.3);
+  border-radius: 4px;
+}
+
+html.theme-sakura ::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 21, 56, 0.5);
+}
+
+/* 水墨风格滚动条 */
+html.theme-ink ::-webkit-scrollbar-track {
+  background: rgba(44, 62, 80, 0.1);
+}
+
+html.theme-ink ::-webkit-scrollbar-thumb {
+  background: rgba(44, 62, 80, 0.3);
+  border-radius: 4px;
+}
+
+html.theme-ink ::-webkit-scrollbar-thumb:hover {
+  background: rgba(44, 62, 80, 0.5);
+}
+
+/* 选择文本样式 */
+/* 科技风格 */
+html.theme-tech ::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: inherit;
+}
+
+/* 樱花风格 */
+html.theme-sakura ::selection {
+  background: rgba(251, 113, 133, 0.3);
+  color: inherit;
+}
+
+/* 水墨风格 */
+html.theme-ink ::selection {
+  background: rgba(71, 85, 105, 0.3);
+  color: inherit;
+}
+
+/* 焦点样式 */
+/* 科技风格 */
+html.theme-tech button:focus,
+html.theme-tech a:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* 樱花风格 */
+html.theme-sakura button:focus,
+html.theme-sakura a:focus {
+  outline: 2px solid rgba(251, 113, 133, 0.5);
+  outline-offset: 2px;
+}
+
+/* 水墨风格 */
+html.theme-ink button:focus,
+html.theme-ink a:focus {
+  outline: 2px solid rgba(71, 85, 105, 0.5);
+  outline-offset: 2px;
+}
+
+/* 动画性能优化 */
+* {
+  will-change: auto;
+}
+
+.animate {
+  will-change: transform, opacity;
+}
+
+/* 减少动画对性能的影响 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 响应式图片 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 链接样式重置 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 按钮样式重置 */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* 输入框样式重置 */
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+/* 列表样式重置 */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 标题样式重置 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: inherit;
+}
+
+/* 段落样式重置 */
+p {
+  margin: 0;
+}
+
+/* 加载动画 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+/* 主题特效动画 */
+/* 科技风格动画 */
+@keyframes tech-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* 樱花风格动画 */
+@keyframes sakura-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* 水墨风格动画 */
+@keyframes ink-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 0;
+  }
+}
+
+/* 工具类 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.select-none {
+  user-select: none;
+}
+
+/* 过渡动画 */
+.transition {
+  transition: all 0.3s ease;
+}
+
+.transition-fast {
+  transition: all 0.15s ease;
+}
+
+.transition-slow {
+  transition: all 0.5s ease;
+}
+
+/* 阴影 */
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 圆角 */
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+} 

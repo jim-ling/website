@@ -9,6 +9,7 @@ import 'nprogress/nprogress.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import 'vxe-table/lib/style.css'
 import '@/assets/styles/index.scss'
+import '@/styles/global.css'
 import 'virtual:uno.css'
 
 if (typeof (window as any).global === 'undefined') {

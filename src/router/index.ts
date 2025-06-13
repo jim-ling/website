@@ -5,7 +5,7 @@ import { getToken } from '@/store/cache/cookies'
 import { usePermissionStore } from '@/store/pinia/permission'
 import { useUserStore } from '@/store/pinia/user'
 import { createRouter } from 'vue-router'
-const Layouts = () => import("@/layouts/index.vue")
+const BlogLayout = () => import("@/layouts/BlogLayout.vue")
 /**
  * @name 常驻路由
  * @description 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置唯一的 Name 属性
@@ -13,11 +13,15 @@ const Layouts = () => import("@/layouts/index.vue")
 export const constantRoutes: RouteRecordRaw[] = [
     {
         path: '/',
-        component: Layouts,
+        component: BlogLayout,
         children: [
             {
-                path: ':path(.*)',
-                component: () => import("@/pages/dashboard/index.vue")
+                path: '',
+                component: () => import("@/pages/home/index.vue"),
+                name: "Home",
+                meta: {
+                    title: "首页"
+                }
             }
         ]
     },
@@ -47,97 +51,97 @@ export const constantRoutes: RouteRecordRaw[] = [
             hidden: true
         },
         alias: '/:pathMatch(.*)*'
-    },
-    {
-        path: '/login',
-        component: () => import('@/pages/login/index.vue'),
-        meta: {
-            hidden: true
-        }
     }
 ]
-// 左侧菜单路由
+
+// 个人博客路由
 export const leftBarRoutes: RouteRecordRaw[] = [
     {
         path: "/",
-        component: Layouts,
-        // redirect: "/dashboard",
+        component: BlogLayout,
         children: [
           {
-            path: "Home",
-            component: () => import("@/pages/my-show/index.vue"),
-            name: "Dashboard",
+            path: "",
+            component: () => import("@/pages/home/index.vue"),
+            name: "HomePage",
             meta: {
-              title: "首页",
-              svgIcon: "dashboard",
+              title: "🏠 首页",
               affix: true
             }
           }
         ]
     },
     {
-        path: '/user',
-        component: Layouts,
-        name: "Demo",
-        redirect: "/",
-        meta: {
-          title: "用户管理",
-          elIcon: "DataBoard"
-        },
+        path: '/portfolio',
+        component: BlogLayout,
         children: [
             {
-                path: 'list',
-                name: 'list',
+                path: '',
+                name: 'Portfolio',
                 meta: {
-                    title: '用户列表',
-                    icon: 'dashboard',
-                    roles: ['admin', 'editor']
+                    title: '🎨 作品展示'
                 },
-                component: () => import('@/pages/error/403.vue')
-            },
-            {
-                path: 'error',
-                name: 'error',
-                meta: {
-                    title: '999',
-                    icon: 'dashboard',
-                    roles: ['admin', 'editor']
-                },
-                component: () => import('@/pages/error/404.vue')
+                component: () => import('@/pages/portfolio/index.vue')
             }
         ]
     },
     {
-        path: '/file',
-        component: Layouts,
-        name: "File",
-        redirect: "/file",
+        path: '/blog',
+        component: BlogLayout,
+        name: "BlogSection",
         meta: {
-          title: "文件管理",
-          elIcon: "DataBoard"
+          title: "📝 个人博客"
         },
         children: [
             {
-                path: 'upload',
-                name: 'upload',
+                path: '',
+                name: 'BlogList',
                 meta: {
-                    title: '文件上传'
+                    title: '博客列表'
                 },
-                component: () => import('@/pages/aws-s3/upload.vue')
-            }, {
-                path: 'view',
-                name: 'view',
+                component: () => import('@/pages/blog/index.vue')
+            },
+            {
+                path: 'article/:id',
+                name: 'BlogArticle',
                 meta: {
-                    title: '文件查询'
+                    title: '文章详情',
+                    hidden: true
                 },
-                component: () => import('@/pages/aws-s3/upload.vue')
+                component: () => import('@/pages/blog/article.vue')
+            }
+        ]
+    },
+    {
+        path: '/bookmarks',
+        component: BlogLayout,
+        children: [
+            {
+                path: '',
+                name: 'Bookmarks',
+                meta: {
+                    title: '🔗 精品网址'
+                },
+                component: () => import('@/pages/bookmarks/index.vue')
+            }
+        ]
+    },
+    {
+        path: '/about',
+        component: BlogLayout,
+        children: [
+            {
+                path: '',
+                name: 'About',
+                meta: {
+                    title: '👨‍💻 关于我'
+                },
+                component: () => import('@/pages/about/index.vue')
             }
         ]
     }
 ]
 
-
-/** 路由实例 */
 /** 路由实例 */
 export const router = createRouter({
     history: routerConfig.history,
@@ -164,39 +168,13 @@ export function resetRouter() {
 router.beforeEach(async (to, _from) => {
     const userStore = useUserStore()
     const permissionStore = usePermissionStore()
-    // 如果没有登陆
-    if (!getToken()) {
-        // 如果在免登录的白名单中，则直接进入
-        if (isWhiteList(to)) return true
-        // 其他没有访问权限的页面将被重定向到登录页面
-        return '/login'
-    }
-    // 如果已经登录，并准备进入 Login 页面，则重定向到主页
-    if (to.path === "/login") return "/"
-    // 如果用户已经获得其权限角色
-    if (userStore.roles.length !== 0) return true
-    // 否则要重新获取权限角色
-    try {
-        await userStore.getInfo()
-        // 注意：角色必须是一个数组！ 例如: ["admin"] 或 ["developer", "editor"]
-        const roles = userStore.roles
-        // 生成可访问的 Routes
-        routerConfig.dynamic ? permissionStore.setRoutes(roles) : permissionStore.setAllRoutes()
-        // 将 "有访问权限的动态路由" 添加到 Router 中
-        permissionStore.addRoutes.forEach(route => router.addRoute(route))
-        // 设置 replace: true, 因此导航将不会留下历史记录
-        return { ...to, replace: true }
-    } catch (error) {
-        // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
-        userStore.resetToken()
-        ElMessage.error((error as Error).message || '路由守卫发生错误')
-        return '/login'
-    }
+    
+    // 个人博客不需要登录验证，直接允许访问
+    return true
 })
 
 // 全局后置钩子
-//   router.afterEach((to) => {
-//     setRouteChange(to)
-//     setTitle(to.meta.title)
-//     NProgress.done()
-//   })
+router.afterEach((to) => {
+    // 设置页面标题
+    document.title = to.meta.title ? `${to.meta.title} - 个人博客` : '个人博客'
+})
