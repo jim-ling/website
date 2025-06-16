@@ -1172,3 +1172,4 @@ html.theme-tech .empty-state {
     align-items: flex-start;
   }
 }
+</style>
