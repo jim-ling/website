@@ -330,20 +330,104 @@ const handleImageError = (event: Event) => {
   margin-bottom: 0;
 }
 
-/* 主题样式 */
-/* 科技风格主题 */
-:global(.theme-tech) .bookmarks-container {
+/* 科技风格主题样式 */
+html.theme-tech .bookmarks-container {
   background: transparent;
 }
 
-:global(.theme-tech) .page-title {
-  color: #00ffff !important;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-  font-weight: bold;
+html.theme-tech .page-title {
+  color: #00ffff;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
-:global(.theme-tech) .page-subtitle {
-  color: #e2e8f0 !important;
+html.theme-tech .search-box {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #c0c0c0;
+  box-shadow: 0 0 15px rgba(0, 194, 255, 0.1);
+}
+
+html.theme-tech .search-box::placeholder {
+  color: #a0a0a0;
+}
+
+html.theme-tech .search-box:focus {
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+}
+
+html.theme-tech .category-tags .category-tag {
+  background: rgba(0, 194, 255, 0.2);
+  color: #c0c0c0;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 194, 255, 0.1);
+}
+
+html.theme-tech .category-tags .category-tag:hover {
+  background: rgba(0, 255, 255, 0.3);
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+html.theme-tech .category-tags .category-tag.active {
+  background: #00ffff;
+  color: white;
+  border-color: #00ffff;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+}
+
+html.theme-tech .bookmark-card {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+  color: #e2e8f0;
+}
+
+html.theme-tech .bookmark-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
+}
+
+html.theme-tech .bookmark-card:hover {
+  background: rgba(0, 194, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+  transform: translateY(-10px);
+}
+
+html.theme-tech .bookmark-title {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+html.theme-tech .bookmark-description {
+  color: #c0c0c0;
+}
+
+html.theme-tech .bookmark-url {
+  color: #a0a0a0;
+}
+
+html.theme-tech .bookmark-tags .tag {
+  background: rgba(0, 194, 255, 0.2);
+  color: #c0c0c0;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+html.theme-tech .bookmark-tags .tag:hover {
+  background: rgba(0, 255, 255, 0.3);
+  border-color: rgba(0, 255, 255, 0.5);
+}
+
+html.theme-tech .empty-state {
+  color: #c0c0c0;
+}
+
+html.theme-tech .empty-icon {
+  color: #00ffff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
 /* 樱花风格主题 */
@@ -388,41 +472,6 @@ const handleImageError = (event: Event) => {
   border-radius: 25px;
 }
 
-/* 科技风格搜索框 */
-:global(.theme-tech) .search-input :deep(.el-input__wrapper) {
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-}
-
-:global(.theme-tech) .search-input :deep(.el-input__inner) {
-  color: #e2e8f0;
-}
-
-:global(.theme-tech) .search-input :deep(.el-input__inner::placeholder) {
-  color: rgba(226, 232, 240, 0.6);
-}
-
-/* 樱花风格搜索框 */
-:global(.theme-sakura) .search-input :deep(.el-input__wrapper) {
-  background: rgba(139, 21, 56, 0.1);
-  border: 1px solid rgba(139, 21, 56, 0.3);
-}
-
-:global(.theme-sakura) .search-input :deep(.el-input__inner) {
-  color: #8b1538;
-}
-
-/* 水墨风格搜索框 */
-:global(.theme-ink) .search-input :deep(.el-input__wrapper) {
-  background: rgba(44, 62, 80, 0.1);
-  border: 1px solid rgba(44, 62, 80, 0.3);
-}
-
-:global(.theme-ink) .search-input :deep(.el-input__inner) {
-  color: #2c3e50;
-}
-
 /* 分类标签 */
 .category-tabs {
   display: flex;
@@ -434,87 +483,136 @@ const handleImageError = (event: Event) => {
 
 .category-tab {
   padding: 0.75rem 1.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   color: white;
-  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.category-tab:hover::before {
+  left: 100%;
 }
 
 .category-tab:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .category-tab.active {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
   color: white;
-}
-
-.count {
-  font-size: 0.8rem;
-  opacity: 0.8;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* 科技风格分类标签 */
-:global(.theme-tech) .category-tab {
-  border-color: rgba(0, 255, 255, 0.3);
-  background: rgba(0, 255, 255, 0.1);
+html.theme-tech .category-tab {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
   color: #e2e8f0;
 }
 
-:global(.theme-tech) .category-tab:hover {
-  border-color: rgba(0, 255, 255, 0.5);
-  background: rgba(0, 255, 255, 0.2);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+html.theme-tech .category-tab::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
 }
 
-:global(.theme-tech) .category-tab.active {
+html.theme-tech .category-tab:hover {
+  background: rgba(0, 194, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+html.theme-tech .category-tab.active {
   background: rgba(0, 255, 255, 0.3);
   border-color: rgba(0, 255, 255, 0.5);
-  color: #00ffff;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
 }
 
 /* 樱花风格分类标签 */
 :global(.theme-sakura) .category-tab {
-  border-color: rgba(139, 21, 56, 0.3);
   background: rgba(139, 21, 56, 0.1);
+  border: 1px solid rgba(139, 21, 56, 0.2);
   color: #8b1538;
 }
 
+:global(.theme-sakura) .category-tab::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 21, 56, 0.1),
+    transparent
+  );
+}
+
 :global(.theme-sakura) .category-tab:hover {
-  border-color: rgba(139, 21, 56, 0.5);
   background: rgba(139, 21, 56, 0.2);
+  box-shadow: 0 10px 30px rgba(139, 21, 56, 0.3);
 }
 
 :global(.theme-sakura) .category-tab.active {
   background: rgba(139, 21, 56, 0.3);
   border-color: rgba(139, 21, 56, 0.5);
-  color: #8b1538;
+  box-shadow: 0 10px 30px rgba(139, 21, 56, 0.4);
 }
 
 /* 水墨风格分类标签 */
 :global(.theme-ink) .category-tab {
-  border-color: rgba(44, 62, 80, 0.3);
   background: rgba(44, 62, 80, 0.1);
+  border: 1px solid rgba(44, 62, 80, 0.2);
   color: #2c3e50;
 }
 
+:global(.theme-ink) .category-tab::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(44, 62, 80, 0.1),
+    transparent
+  );
+}
+
 :global(.theme-ink) .category-tab:hover {
-  border-color: rgba(44, 62, 80, 0.5);
   background: rgba(44, 62, 80, 0.2);
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
 }
 
 :global(.theme-ink) .category-tab.active {
   background: rgba(44, 62, 80, 0.3);
   border-color: rgba(44, 62, 80, 0.5);
-  color: #2c3e50;
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.4);
+}
+
+.count {
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 /* 书签网格 */
@@ -528,129 +626,42 @@ const handleImageError = (event: Event) => {
 
 .bookmark-card {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.bookmark-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+.bookmark-card:hover::before {
+  left: 100%;
 }
 
 .bookmark-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* 科技风格书签卡片 */
-:global(.theme-tech) .bookmark-card {
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
-}
-
-:global(.theme-tech) .bookmark-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
-}
-
-:global(.theme-tech) .bookmark-title {
-  color: #00ffff !important;
-}
-
-:global(.theme-tech) .bookmark-url {
-  color: #e2e8f0 !important;
-}
-
-:global(.theme-tech) .bookmark-description {
-  color: #e2e8f0 !important;
-}
-
-:global(.theme-tech) .tag {
-  background: rgba(0, 255, 255, 0.2);
-  color: #e2e8f0 !important;
-}
-
-:global(.theme-tech) .category-badge {
-  background: rgba(0, 255, 255, 0.3);
-  color: #00ffff !important;
-}
-
-:global(.theme-tech) .add-date {
-  color: #e2e8f0 !important;
-}
-
-/* 樱花风格书签卡片 */
-:global(.theme-sakura) .bookmark-card {
-  background: rgba(139, 21, 56, 0.1);
-  border: 1px solid rgba(139, 21, 56, 0.2);
-  box-shadow: 0 10px 30px rgba(139, 21, 56, 0.1);
-}
-
-:global(.theme-sakura) .bookmark-card:hover {
-  box-shadow: 0 20px 40px rgba(139, 21, 56, 0.2);
-}
-
-:global(.theme-sakura) .bookmark-title {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .bookmark-url {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .bookmark-description {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .tag {
-  background: rgba(139, 21, 56, 0.2);
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .category-badge {
-  background: rgba(139, 21, 56, 0.3);
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .add-date {
-  color: #8b1538 !important;
-}
-
-/* 水墨风格书签卡片 */
-:global(.theme-ink) .bookmark-card {
-  background: rgba(44, 62, 80, 0.1);
-  border: 1px solid rgba(44, 62, 80, 0.2);
-  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1);
-}
-
-:global(.theme-ink) .bookmark-card:hover {
-  box-shadow: 0 20px 40px rgba(44, 62, 80, 0.2);
-}
-
-:global(.theme-ink) .bookmark-title {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .bookmark-url {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .bookmark-description {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .tag {
-  background: rgba(44, 62, 80, 0.2);
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .category-badge {
-  background: rgba(44, 62, 80, 0.3);
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .add-date {
-  color: #2c3e50 !important;
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
 .bookmark-header {
@@ -658,6 +669,8 @@ const handleImageError = (event: Event) => {
   align-items: flex-start;
   gap: 1rem;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .bookmark-icon {
@@ -676,6 +689,8 @@ const handleImageError = (event: Event) => {
 .bookmark-info {
   flex: 1;
   min-width: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .bookmark-title {
@@ -684,17 +699,23 @@ const handleImageError = (event: Event) => {
   color: #2d3748;
   margin-bottom: 0.25rem;
   line-height: 1.3;
+  position: relative;
+  z-index: 2;
 }
 
 .bookmark-url {
   font-size: 0.9rem;
   color: #718096;
   margin: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .bookmark-actions {
   display: flex;
   gap: 0.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .action-btn {
@@ -722,6 +743,8 @@ const handleImageError = (event: Event) => {
 
 .bookmark-content {
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .bookmark-description {
@@ -729,6 +752,8 @@ const handleImageError = (event: Event) => {
   line-height: 1.5;
   margin-bottom: 1rem;
   font-size: 0.95rem;
+  position: relative;
+  z-index: 2;
 }
 
 .bookmark-tags {
@@ -736,6 +761,8 @@ const handleImageError = (event: Event) => {
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .tag {
@@ -751,6 +778,8 @@ const handleImageError = (event: Event) => {
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
+  position: relative;
+  z-index: 2;
 }
 
 .category-badge {
@@ -788,62 +817,35 @@ const handleImageError = (event: Event) => {
   margin: 0;
 }
 
-/* 科技风格空状态 */
-:global(.theme-tech) .empty-state h3 {
-  color: #00ffff !important;
-}
-
-:global(.theme-tech) .empty-state p {
-  color: #e2e8f0 !important;
-}
-
-/* 樱花风格空状态 */
-:global(.theme-sakura) .empty-state h3 {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .empty-state p {
-  color: #8b1538 !important;
-}
-
-/* 水墨风格空状态 */
-:global(.theme-ink) .empty-state h3 {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .empty-state p {
-  color: #2c3e50 !important;
-}
-
 /* 响应式设计 */
 @media (max-width: 768px) {
   .bookmarks-container {
     padding: 1rem;
   }
-  
+
   .page-title {
     font-size: 2rem;
   }
-  
+
   .bookmarks-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .category-tabs {
     justify-content: flex-start;
     overflow-x: auto;
     padding-bottom: 0.5rem;
   }
-  
+
   .category-tab {
     white-space: nowrap;
   }
-  
+
   .bookmark-header {
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .bookmark-actions {
     align-self: flex-end;
   }

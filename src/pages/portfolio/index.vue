@@ -7,8 +7,8 @@
 
     <!-- 作品分类筛选 -->
     <div class="category-filter">
-      <button 
-        v-for="category in categories" 
+      <button
+        v-for="category in categories"
         :key="category.key"
         :class="['filter-btn', { active: activeCategory === category.key }]"
         @click="activeCategory = category.key"
@@ -19,8 +19,8 @@
 
     <!-- 作品网格 -->
     <div class="portfolio-grid">
-      <div 
-        v-for="project in filteredProjects" 
+      <div
+        v-for="project in filteredProjects"
         :key="project.id"
         class="project-card"
         @click="openProject(project)"
@@ -42,19 +42,23 @@
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-description">{{ project.description }}</p>
           <div class="project-tags">
-            <span v-for="tag in project.tags" :key="tag" class="tag">{{ tag }}</span>
+            <span v-for="tag in project.tags" :key="tag" class="tag">{{
+              tag
+            }}</span>
           </div>
           <div class="project-meta">
             <span class="date">{{ project.date }}</span>
-            <span class="category">{{ getCategoryName(project.category) }}</span>
+            <span class="category">{{
+              getCategoryName(project.category)
+            }}</span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- 项目详情弹窗 -->
-    <el-dialog 
-      v-model="dialogVisible" 
+    <el-dialog
+      v-model="dialogVisible"
       :title="selectedProject?.title"
       width="80%"
       class="project-dialog"
@@ -66,17 +70,23 @@
         <div class="detail-content">
           <h3>项目介绍</h3>
           <p>{{ selectedProject.fullDescription }}</p>
-          
+
           <h3>技术栈</h3>
           <div class="tech-stack">
-            <span v-for="tech in selectedProject.technologies" :key="tech" class="tech-tag">
+            <span
+              v-for="tech in selectedProject.technologies"
+              :key="tech"
+              class="tech-tag"
+            >
               {{ tech }}
             </span>
           </div>
 
           <h3>项目特色</h3>
           <ul class="features">
-            <li v-for="feature in selectedProject.features" :key="feature">{{ feature }}</li>
+            <li v-for="feature in selectedProject.features" :key="feature">
+              {{ feature }}
+            </li>
           </ul>
 
           <div class="project-links">
@@ -133,106 +143,72 @@ const projects = ref([
   {
     id: 1,
     title: '个人博客系统',
-    description: '基于Vue3+TypeScript的现代化个人博客',
-    fullDescription: '这是一个功能完整的个人博客系统，采用现代化的前端技术栈构建。支持文章管理、分类标签、评论系统、搜索功能等。界面设计简洁优雅，响应式布局适配各种设备。',
-    image: 'https://via.placeholder.com/400x300/667eea/ffffff?text=Blog+System',
+    description: '基于Vue 3和TypeScript开发的现代化博客系统，支持文章管理、分类标签、评论系统等功能。',
+    image: '/src/assets/images/blue.png',
+    technologies: ['Vue 3', 'TypeScript', 'Element Plus', 'Node.js'],
     category: 'web',
-    tags: ['Vue3', 'TypeScript', 'Element Plus'],
-    technologies: ['Vue 3', 'TypeScript', 'Vite', 'Element Plus', 'Pinia', 'Vue Router'],
-    features: [
-      '响应式设计，适配各种设备',
-      '支持Markdown编辑和预览',
-      '文章分类和标签管理',
-      '全文搜索功能',
-      '评论系统',
-      '暗黑模式支持'
-    ],
-    date: '2024-01',
-    demo: 'https://example.com/blog-demo',
-    github: 'https://github.com/username/blog'
+    demoUrl: 'https://blog-demo.com',
+    codeUrl: 'https://github.com/username/blog-system',
+    date: '2024-01-15',
+    featured: true,
+    description_full: '这是一个功能完整的个人博客系统，采用前后端分离架构。前端使用Vue 3 + TypeScript + Element Plus构建，后端基于Node.js + Express + MongoDB。系统支持文章的增删改查、分类管理、标签系统、用户评论、文章搜索等功能。界面设计简洁美观，响应式布局适配各种设备。',
+    features: ['响应式设计', '文章管理', '分类标签', '评论系统', '搜索功能', 'SEO优化']
   },
   {
     id: 2,
     title: '图片破碎特效',
-    description: '基于Canvas和GSAP的交互式图片破碎动画',
-    fullDescription: '一个创意十足的图片破碎重组特效，使用三角剖分算法将图片分解成三角形片段，配合GSAP动画库实现流畅的破碎和重组动画效果。',
-    image: 'https://via.placeholder.com/400x300/764ba2/ffffff?text=Shatter+Effect',
+    description: '使用Canvas和WebGL实现的炫酷图片破碎动画效果，支持多种破碎模式和自定义参数。',
+    image: '/src/assets/images/blue.png',
+    technologies: ['JavaScript', 'Canvas', 'WebGL', 'GSAP'],
     category: 'creative',
-    tags: ['Canvas', 'GSAP', '三角剖分'],
-    technologies: ['HTML5 Canvas', 'GSAP', 'JavaScript', 'Delaunay Triangulation'],
-    features: [
-      '基于三角剖分的图片分解',
-      '流畅的3D破碎动画',
-      '鼠标交互响应',
-      '自动重组循环',
-      '性能优化处理'
-    ],
-    date: '2024-02',
-    demo: 'https://example.com/shatter-demo',
-    github: 'https://github.com/username/shatter-effect'
+    demoUrl: 'https://shatter-demo.com',
+    codeUrl: 'https://github.com/username/image-shatter',
+    date: '2023-12-20',
+    featured: true,
+    description_full: '这是一个基于Canvas和WebGL技术实现的图片破碎特效库。通过三角剖分算法将图片分割成多个三角形片段，然后使用物理引擎模拟破碎效果。支持多种破碎模式：爆炸式、重力式、螺旋式等。用户可以自定义破碎参数，如片段数量、动画时长、物理属性等。',
+    features: ['多种破碎模式', '物理引擎', '自定义参数', '高性能渲染', '移动端适配', 'API友好']
   },
   {
     id: 3,
     title: '任务管理应用',
-    description: '简洁高效的个人任务管理工具',
-    fullDescription: '一款专注于提升工作效率的任务管理应用，支持任务创建、分类、优先级设置、进度跟踪等功能。界面简洁直观，操作流畅自然。',
-    image: 'https://via.placeholder.com/400x300/48bb78/ffffff?text=Task+Manager',
+    description: '功能丰富的任务管理工具，支持项目分组、优先级设置、进度跟踪、团队协作等功能。',
+    image: '/src/assets/images/blue.png',
+    technologies: ['React', 'Redux', 'Ant Design', 'Express'],
     category: 'web',
-    tags: ['Vue3', 'Pinia', '本地存储'],
-    technologies: ['Vue 3', 'Pinia', 'LocalStorage', 'CSS3', 'Vite'],
-    features: [
-      '任务的增删改查',
-      '任务分类和标签',
-      '优先级和截止日期',
-      '进度统计图表',
-      '数据本地存储',
-      '拖拽排序功能'
-    ],
-    date: '2024-03',
-    demo: 'https://example.com/task-demo',
-    github: 'https://github.com/username/task-manager'
+    demoUrl: 'https://task-demo.com',
+    codeUrl: 'https://github.com/username/task-manager',
+    date: '2023-11-10',
+    featured: false,
+    description_full: '一个专业的任务管理应用，帮助个人和团队更好地组织和跟踪工作进度。支持创建项目、添加任务、设置优先级、分配成员、设置截止日期等功能。提供多种视图模式：列表视图、看板视图、日历视图、甘特图等。集成了实时通知、文件附件、评论讨论等协作功能。',
+    features: ['项目管理', '多视图模式', '团队协作', '实时通知', '文件管理', '数据统计']
   },
   {
     id: 4,
-    title: '天气预报小程序',
-    description: '基于微信小程序的天气查询应用',
-    fullDescription: '一款简洁实用的天气预报小程序，提供实时天气、未来7天预报、生活指数等信息。界面美观，数据准确，用户体验良好。',
-    image: 'https://via.placeholder.com/400x300/ed8936/ffffff?text=Weather+App',
+    title: '天气预报应用',
+    description: '基于地理位置的天气预报应用，提供详细的天气信息、预警提醒和美观的数据可视化。',
+    image: '/src/assets/images/blue.png',
+    technologies: ['Vue 3', 'Composition API', 'ECharts', 'PWA'],
     category: 'mobile',
-    tags: ['微信小程序', 'API接口', 'UI设计'],
-    technologies: ['微信小程序', 'JavaScript', 'WXML', 'WXSS', '天气API'],
-    features: [
-      '实时天气信息',
-      '7天天气预报',
-      '城市搜索定位',
-      '生活指数提醒',
-      '天气预警推送',
-      '界面主题切换'
-    ],
-    date: '2024-04',
-    demo: 'https://example.com/weather-demo',
-    github: 'https://github.com/username/weather-miniprogram'
+    demoUrl: 'https://weather-demo.com',
+    codeUrl: 'https://github.com/username/weather-app',
+    date: '2023-10-05',
+    featured: false,
+    description_full: '一个现代化的天气预报应用，集成了多个天气数据源，提供准确的天气信息。支持自动定位和手动搜索城市，显示当前天气、24小时预报、7天预报等信息。使用ECharts进行数据可视化，展示温度趋势、降水概率、空气质量等数据。采用PWA技术，支持离线使用和桌面安装。',
+    features: ['多数据源', '精准定位', '数据可视化', 'PWA支持', '离线缓存', '桌面通知']
   },
   {
     id: 5,
     title: '代码格式化工具',
-    description: '在线代码美化和格式化工具',
-    fullDescription: '一个功能强大的在线代码格式化工具，支持多种编程语言的代码美化、压缩、高亮显示等功能。界面简洁，操作便捷。',
-    image: 'https://via.placeholder.com/400x300/9f7aea/ffffff?text=Code+Formatter',
+    description: '支持多种编程语言的在线代码格式化工具，提供语法高亮、错误检测、代码美化等功能。',
+    image: '/src/assets/images/blue.png',
+    technologies: ['TypeScript', 'Monaco Editor', 'Prettier', 'ESLint'],
     category: 'tool',
-    tags: ['代码处理', 'Monaco Editor', '工具'],
-    technologies: ['Vue 3', 'Monaco Editor', 'Prettier', 'TypeScript'],
-    features: [
-      '多语言代码格式化',
-      '语法高亮显示',
-      '代码压缩功能',
-      '实时预览效果',
-      '配置选项丰富',
-      '一键复制分享'
-    ],
-    date: '2024-05',
-    demo: 'https://example.com/formatter-demo',
-    github: 'https://github.com/username/code-formatter'
+    demoUrl: 'https://formatter-demo.com',
+    codeUrl: 'https://github.com/username/code-formatter',
+    date: '2023-09-15',
+    featured: false,
+    description_full: '一个功能强大的在线代码格式化工具，支持JavaScript、TypeScript、HTML、CSS、JSON等多种语言。集成了Monaco Editor提供专业的代码编辑体验，支持语法高亮、自动补全、错误提示等功能。使用Prettier和ESLint进行代码格式化和质量检测，帮助开发者写出更规范的代码。',
+    features: ['多语言支持', '实时格式化', '语法检测', '代码高亮', '快捷键支持', '配置导出']
   }
 ])
 
@@ -241,12 +217,14 @@ const filteredProjects = computed(() => {
   if (activeCategory.value === 'all') {
     return projects.value
   }
-  return projects.value.filter(project => project.category === activeCategory.value)
+  return projects.value.filter(
+    (project) => project.category === activeCategory.value
+  )
 })
 
 // 获取分类名称
 const getCategoryName = (categoryKey: string) => {
-  const category = categories.find(cat => cat.key === categoryKey)
+  const category = categories.find((cat) => cat.key === categoryKey)
   return category ? category.name : categoryKey
 }
 
@@ -382,13 +360,13 @@ const openCode = (url: string) => {
 /* 科技风格筛选按钮 */
 :global(.theme-tech) .filter-btn {
   border-color: rgba(0, 255, 255, 0.3);
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 194, 255, 0.1);
   color: #e2e8f0;
 }
 
 :global(.theme-tech) .filter-btn:hover {
   border-color: rgba(0, 255, 255, 0.5);
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.2);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
@@ -624,25 +602,25 @@ const openCode = (url: string) => {
   .portfolio-container {
     padding: 1rem;
   }
-  
+
   .page-title {
     font-size: 2rem;
   }
-  
+
   .portfolio-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .project-detail {
     grid-template-columns: 1fr;
   }
-  
+
   .category-filter {
     justify-content: flex-start;
     overflow-x: auto;
     padding-bottom: 0.5rem;
   }
-  
+
   .filter-btn {
     white-space: nowrap;
   }
@@ -650,13 +628,13 @@ const openCode = (url: string) => {
 
 /* 科技风格作品卡片 */
 :global(.theme-tech) .project-card {
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 194, 255, 0.1);
 }
 
 :global(.theme-tech) .project-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 194, 255, 0.2);
 }
 
 :global(.theme-tech) .project-title {
@@ -668,7 +646,7 @@ const openCode = (url: string) => {
 }
 
 :global(.theme-tech) .tag {
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.2);
   color: #e2e8f0 !important;
 }
 

@@ -21,14 +21,14 @@ body {
 }
 
 /* 主题样式 - 清晰版本 */
-/* 科技风格主题 - 赛博朋克风格 */
+/* 科技风格主题 - 现代科技风格 */
 html.theme-tech {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
 }
 
 html.theme-tech body {
   background: transparent;
-  color: #00ffff;
+  color: #8b9dc3;
   font-family: 'Courier New', 'Monaco', monospace;
 }
 
@@ -99,7 +99,7 @@ html.theme-tech h3,
 html.theme-tech .hero-title,
 html.theme-tech .page-title {
   color: #00ffff !important;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
   font-weight: bold;
 }
 
@@ -111,7 +111,7 @@ html.theme-tech .description,
 html.theme-tech .content,
 html.theme-tech .article-content,
 html.theme-tech .blog-content {
-  color: #e2e8f0 !important;
+  color: #c0c0c0 !important;
 }
 
 /* 确保所有链接和按钮文字清晰 */
@@ -128,8 +128,8 @@ html.theme-tech textarea,
 html.theme-tech select,
 html.theme-tech .el-input__inner,
 html.theme-tech .el-textarea__inner {
-  color: #e2e8f0 !important;
-  background: rgba(0, 255, 255, 0.1) !important;
+  color: #c0c0c0 !important;
+  background: rgba(0, 194, 255, 0.1) !important;
 }
 
 /* 确保卡片和容器内的文字清晰 */
@@ -157,13 +157,13 @@ html.theme-tech th {
 /* 确保代码块文字清晰 */
 html.theme-tech code,
 html.theme-tech pre {
-  color: #00ff7f !important;
-  background: rgba(0, 255, 255, 0.1) !important;
+  color: #87ceeb !important;
+  background: rgba(0, 194, 255, 0.1) !important;
 }
 
 /* 确保引用文字清晰 */
 html.theme-tech blockquote {
-  color: #e2e8f0 !important;
+  color: #c0c0c0 !important;
   border-left: 4px solid #00ffff !important;
 }
 
@@ -197,8 +197,8 @@ html.theme-tech .italic {
 html.theme-tech .tag,
 html.theme-tech .badge,
 html.theme-tech .label {
-  color: #e2e8f0 !important;
-  background: rgba(0, 255, 255, 0.2) !important;
+  color: #c0c0c0 !important;
+  background: rgba(0, 194, 255, 0.2) !important;
 }
 
 /* 确保导航文字清晰 */
@@ -259,7 +259,7 @@ html.theme-tech .datetime {
 /* 确保统计数字清晰 */
 html.theme-tech .number,
 html.theme-tech .count,
-html.theme-tech .stat {
+html.theme-tech .value {
   color: #00ffff !important;
 }
 
@@ -267,7 +267,7 @@ html.theme-tech .stat {
 html.theme-tech .price,
 html.theme-tech .amount,
 html.theme-tech .currency {
-  color: #00ff7f !important;
+  color: #87ceeb !important;
 }
 
 /* 确保状态文字清晰 */
@@ -480,16 +480,16 @@ html.theme-ink .italic {
 
 /* 科技风格滚动条 */
 html.theme-tech ::-webkit-scrollbar-track {
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 191, 255, 0.1);
 }
 
 html.theme-tech ::-webkit-scrollbar-thumb {
-  background: rgba(0, 255, 255, 0.3);
+  background: rgba(0, 191, 255, 0.3);
   border-radius: 4px;
 }
 
 html.theme-tech ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 255, 255, 0.5);
+  background: rgba(0, 191, 255, 0.5);
 }
 
 /* 樱花风格滚动条 */
@@ -523,7 +523,7 @@ html.theme-ink ::-webkit-scrollbar-thumb:hover {
 /* 选择文本样式 */
 /* 科技风格 */
 html.theme-tech ::selection {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(0, 191, 255, 0.3);
   color: inherit;
 }
 
@@ -543,7 +543,7 @@ html.theme-ink ::selection {
 /* 科技风格 */
 html.theme-tech button:focus,
 html.theme-tech a:focus {
-  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline: 2px solid rgba(0, 191, 255, 0.5);
   outline-offset: 2px;
 }
 
@@ -666,10 +666,10 @@ p {
 /* 科技风格动画 */
 @keyframes tech-glow {
   0%, 100% {
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.1);
   }
   50% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
   }
 }
 

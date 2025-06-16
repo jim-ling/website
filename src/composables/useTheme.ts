@@ -28,34 +28,30 @@ const themeList: ThemeList[] = [
   }
 ]
 
-/** 正在应用的主题名称 */
-const activeThemeName = ref<ThemeName>(getActiveThemeName() || DEFAULT_THEME_NAME)
+/** 正在应用的主题名称 - 禁用自动初始化，防止与TopNavBar主题系统冲突 */
+const activeThemeName = ref<ThemeName>(DEFAULT_THEME_NAME)
 
 /** 设置主题 */
 function setTheme(value: ThemeName) {
   activeThemeName.value = value
 }
 
-/** 在 html 根元素上挂载 class */
+/** 在 html 根元素上挂载 class - 已禁用，使用TopNavBar的主题系统 */
 function addHtmlClass(value: ThemeName) {
-  document.documentElement.classList.add(value)
+  // 不执行任何操作，防止与TopNavBar主题系统冲突
+  console.warn('useTheme.addHtmlClass 已禁用，请使用TopNavBar的主题系统')
 }
 
-/** 在 html 根元素上移除其他主题 class */
+/** 在 html 根元素上移除其他主题 class - 已禁用，使用TopNavBar的主题系统 */
 function removeHtmlClass(value: ThemeName) {
-  const otherThemeNameList = themeList.map(item => item.name).filter(name => name !== value)
-  document.documentElement.classList.remove(...otherThemeNameList)
+  // 不执行任何操作，防止与TopNavBar主题系统冲突
+  console.warn('useTheme.removeHtmlClass 已禁用，请使用TopNavBar的主题系统')
 }
 
-/** 初始化 */
+/** 初始化 - 已禁用，使用TopNavBar的主题系统 */
 function initTheme() {
-  // watchEffect 来收集副作用
-  watchEffect(() => {
-    const value = activeThemeName.value
-    removeHtmlClass(value)
-    addHtmlClass(value)
-    setActiveThemeName(value)
-  })
+  console.warn('useTheme.initTheme 已禁用，请使用TopNavBar的主题系统')
+  // 不执行任何操作，防止与TopNavBar主题系统冲突
 }
 
 /** 主题 Composable */

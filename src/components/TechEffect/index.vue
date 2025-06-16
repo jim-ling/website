@@ -132,7 +132,7 @@ const currentTheme = ref('tech')
 
 const isActive = computed(() => currentTheme.value === 'tech')
 
-const neonColors = ['#00ffff', '#ff00ff', '#00ff7f', '#ff6b6b', '#4ecdc4', '#ffd700']
+const colors = ['#00bfff', '#87ceeb', '#4682b4', '#5f9ea0', '#b0c4de']
 const digitalChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
 
 const generateNeonLines = () => {
@@ -143,7 +143,7 @@ const generateNeonLines = () => {
       y: Math.random() * 80,
       width: 150 + Math.random() * 300,
       delay: Math.random() * 5,
-      color: neonColors[Math.floor(Math.random() * neonColors.length)]
+      color: colors[Math.floor(Math.random() * colors.length)]
     })
   }
 }
@@ -260,8 +260,8 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(0, 255, 255, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.15) 1px, transparent 1px);
+    linear-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
   background-size: 40px 40px;
   animation: grid-move 15s linear infinite;
 }
@@ -298,11 +298,11 @@ onUnmounted(() => {
   position: absolute;
   width: 3px;
   height: 3px;
-  background: #00ffff;
+  background: #00bfff;
   border-radius: 50%;
   box-shadow: 
-    0 0 6px #00ffff,
-    0 0 12px #00ffff;
+    0 0 6px #00bfff,
+    0 0 12px #00bfff;
   animation: particle-float linear infinite;
   opacity: 0.7;
 }
@@ -324,10 +324,10 @@ onUnmounted(() => {
 
 .rain-char {
   display: block;
-  color: #00ff7f;
+  color: #87ceeb;
   font-family: 'Courier New', monospace;
   font-size: 14px;
-  text-shadow: 0 0 8px #00ff7f;
+  text-shadow: 0 0 8px #87ceeb;
   opacity: 0.6;
   line-height: 1.2;
 }
@@ -343,10 +343,10 @@ onUnmounted(() => {
 .circuit-line {
   position: absolute;
   background: linear-gradient(180deg, 
-    rgba(0, 255, 255, 0.8) 0%, 
-    rgba(0, 255, 255, 0.4) 50%, 
+    rgba(0, 191, 255, 0.8) 0%, 
+    rgba(0, 191, 255, 0.4) 50%, 
     transparent 100%);
-  box-shadow: 0 0 4px rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 4px rgba(0, 191, 255, 0.6);
   animation: circuit-pulse 4s ease-in-out infinite;
 }
 
@@ -362,12 +362,12 @@ onUnmounted(() => {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #00ffff;
+  background: #00bfff;
   border-radius: 50%;
   box-shadow: 
-    0 0 10px #00ffff,
-    0 0 20px #00ffff,
-    0 0 30px #00ffff;
+    0 0 10px #00bfff,
+    0 0 20px #00bfff,
+    0 0 30px #00bfff;
   animation: node-pulse 3s ease-in-out infinite;
 }
 
@@ -428,11 +428,11 @@ onUnmounted(() => {
 @keyframes circuit-pulse {
   0%, 100% {
     opacity: 0.3;
-    box-shadow: 0 0 4px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 4px rgba(0, 191, 255, 0.3);
   }
   50% {
     opacity: 0.8;
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.8);
   }
 }
 
@@ -441,16 +441,16 @@ onUnmounted(() => {
     opacity: 0.4;
     transform: scale(0.8);
     box-shadow: 
-      0 0 10px #00ffff,
-      0 0 20px #00ffff;
+      0 0 10px #00bfff,
+      0 0 20px #00bfff;
   }
   50% {
     opacity: 1;
     transform: scale(1.2);
     box-shadow: 
-      0 0 15px #00ffff,
-      0 0 30px #00ffff,
-      0 0 45px #00ffff;
+      0 0 15px #00bfff,
+      0 0 30px #00bfff,
+      0 0 45px #00bfff;
   }
 }
 </style> 

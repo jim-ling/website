@@ -1,5 +1,5 @@
 <template>
-  <nav class="top-nav" :class="{ 'scrolled': isScrolled }">
+  <nav class="top-nav" :class="{ scrolled: isScrolled }">
     <div class="nav-container">
       <!-- Logo区域 -->
       <div class="nav-logo" @click="$router.push('/')">
@@ -12,8 +12,8 @@
 
       <!-- 导航菜单 -->
       <div class="nav-menu" :class="{ 'mobile-open': isMobileMenuOpen }">
-        <router-link 
-          v-for="item in navItems" 
+        <router-link
+          v-for="item in navItems"
           :key="item.path"
           :to="item.path"
           class="nav-link"
@@ -27,10 +27,12 @@
       <!-- 右侧操作区 -->
       <div class="nav-actions">
         <!-- 主题切换 -->
-        <button 
-          class="action-btn theme-toggle" 
+        <button
+          class="action-btn theme-toggle"
           @click="toggleTheme"
-          :title="`当前主题: ${themes.find(t => t.key === currentTheme)?.name}`"
+          :title="`当前主题: ${
+            themes.find((t) => t.key === currentTheme)?.name
+          }`"
         >
           <span v-if="currentTheme === 'tech'">🚀</span>
           <span v-else-if="currentTheme === 'sakura'">🌸</span>
@@ -38,10 +40,7 @@
         </button>
 
         <!-- 移动端菜单按钮 -->
-        <button 
-          class="action-btn mobile-menu-btn"
-          @click="toggleMobileMenu"
-        >
+        <button class="action-btn mobile-menu-btn" @click="toggleMobileMenu">
           <div class="hamburger" :class="{ active: isMobileMenuOpen }">
             <span></span>
             <span></span>
@@ -52,8 +51,8 @@
     </div>
 
     <!-- 移动端遮罩 -->
-    <div 
-      v-if="isMobileMenuOpen" 
+    <div
+      v-if="isMobileMenuOpen"
       class="mobile-overlay"
       @click="closeMobileMenu"
     ></div>
@@ -61,6 +60,35 @@
 </template>
 
 <script lang="ts" setup>
+// ===== 主题初始化 - 必须在最开始执行 =====
+// 立即执行主题初始化，不依赖任何其他代码
+(() => {
+  try {
+    const savedTheme = localStorage.getItem('theme') || 'tech'
+    const validThemes = ['tech', 'sakura', 'ink']
+    const currentTheme = validThemes.includes(savedTheme) ? savedTheme : 'tech'
+
+    // 清理所有可能存在的主题类（包括新旧两套主题系统）
+    document.documentElement.classList.remove(
+      // 新主题系统的类名
+      'theme-tech', 'theme-sakura', 'theme-ink',
+      // 旧主题系统的类名
+      'normal', 'dark', 'dark-blue'
+    )
+    
+    // 添加当前主题类
+    document.documentElement.classList.add(`theme-${currentTheme}`)
+    
+    // 清理旧主题系统的 localStorage 缓存
+    localStorage.removeItem('v3-admin-vite-active-theme-name-key')
+    
+    console.log(`主题初始化完成: theme-${currentTheme}`)
+  } catch (error) {
+    console.error('主题初始化失败:', error)
+    document.documentElement.classList.add('theme-tech')
+  }
+})()
+
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
@@ -70,6 +98,33 @@ const route = useRoute()
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 const currentTheme = ref('tech')
+
+// 主题配置
+const themes = [
+  {
+    key: 'tech',
+    name: '科技风格',
+    icon: '🚀',
+    description: '未来科技感'
+  },
+  {
+    key: 'sakura',
+    name: '樱花风格',
+    icon: '🌸',
+    description: '浪漫樱花季'
+  },
+  {
+    key: 'ink',
+    name: '水墨风格',
+    icon: '🎨',
+    description: '中国水墨画'
+  }
+]
+
+// 从 localStorage 读取当前主题
+const savedTheme = localStorage.getItem('theme') || 'tech'
+const isValidTheme = themes.some((theme) => theme.key === savedTheme)
+currentTheme.value = isValidTheme ? savedTheme : 'tech'
 
 // 导航项配置
 const navItems = [
@@ -100,28 +155,6 @@ const navItems = [
   }
 ]
 
-// 主题配置
-const themes = [
-  {
-    key: 'tech',
-    name: '科技风格',
-    icon: '🚀',
-    description: '未来科技感'
-  },
-  {
-    key: 'sakura',
-    name: '樱花风格',
-    icon: '🌸',
-    description: '浪漫樱花季'
-  },
-  {
-    key: 'ink',
-    name: '水墨风格',
-    icon: '🎨',
-    description: '中国水墨画'
-  }
-]
-
 // 滚动监听
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
@@ -139,54 +172,50 @@ const closeMobileMenu = () => {
 // 主题切换
 const toggleTheme = () => {
   try {
-    const currentIndex = themes.findIndex(theme => theme.key === currentTheme.value)
+    const currentIndex = themes.findIndex(
+      (theme) => theme.key === currentTheme.value
+    )
     const nextIndex = (currentIndex + 1) % themes.length
     const newTheme = themes[nextIndex].key
-    
+
     // 防止重复切换
     if (newTheme === currentTheme.value) return
-    
+
     currentTheme.value = newTheme
-    
-    // 移除所有主题类
+
+    // 移除所有主题类（包括新旧两套主题系统）
     const htmlElement = document.documentElement
-    htmlElement.classList.remove('theme-tech', 'theme-sakura', 'theme-ink')
-    
+    htmlElement.classList.remove(
+      // 新主题系统的类名
+      'theme-tech', 
+      'theme-sakura', 
+      'theme-ink',
+      // 旧主题系统的类名
+      'normal',
+      'dark',
+      'dark-blue'
+    )
+
     // 立即添加新主题类
     htmlElement.classList.add(`theme-${currentTheme.value}`)
     localStorage.setItem('theme', currentTheme.value)
+    
+    console.log(`主题切换完成: theme-${currentTheme.value}`)
   } catch (error) {
     console.error('主题切换失败:', error)
   }
 }
 
-// 初始化主题
-const initTheme = () => {
-  try {
-    const savedTheme = localStorage.getItem('theme') || 'tech'
-    
-    // 验证主题是否有效
-    const isValidTheme = themes.some(theme => theme.key === savedTheme)
-    currentTheme.value = isValidTheme ? savedTheme : 'tech'
-    
-    // 清理可能存在的主题类
-    document.documentElement.classList.remove('theme-tech', 'theme-sakura', 'theme-ink')
-    document.documentElement.classList.add(`theme-${currentTheme.value}`)
-  } catch (error) {
-    console.error('主题初始化失败:', error)
-    currentTheme.value = 'tech'
-    document.documentElement.classList.add('theme-tech')
-  }
-}
-
 // 监听路由变化，关闭移动端菜单
-watch(() => route.path, () => {
-  closeMobileMenu()
-})
+watch(
+  () => route.path,
+  () => {
+    closeMobileMenu()
+  }
+)
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
-  initTheme()
 })
 
 onUnmounted(() => {
@@ -458,7 +487,7 @@ onUnmounted(() => {
 
 :global(.theme-tech) .top-nav.scrolled {
   background: rgba(0, 0, 0, 0.98);
-  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 194, 255, 0.2);
 }
 
 :global(.theme-tech) .logo-title {
@@ -480,24 +509,24 @@ onUnmounted(() => {
 
 :global(.theme-tech) .nav-link:hover {
   color: #00ffff !important;
-  background: rgba(0, 255, 255, 0.1);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 194, 255, 0.2);
 }
 
 :global(.theme-tech) .nav-link.router-link-active {
   color: #00ffff !important;
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.2);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
 :global(.theme-tech) .action-btn {
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 194, 255, 0.1);
   color: #00ffff !important;
   border: 1px solid rgba(0, 255, 255, 0.3);
 }
 
 :global(.theme-tech) .action-btn:hover {
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.2);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
 }
 

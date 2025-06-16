@@ -5,7 +5,7 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-title">
-            <span class="wave">👋</span> 
+            <span class="wave">👋</span>
             欢迎来到我的数字世界
           </h1>
           <p class="hero-description">
@@ -28,7 +28,7 @@
             </button>
           </div>
         </div>
-        
+
         <div class="hero-visual">
           <div class="floating-elements">
             <div class="float-item" style="--delay: 0s">💻</div>
@@ -64,28 +64,36 @@
         <div class="feature-card" @click="$router.push('/portfolio')">
           <div class="card-icon">🎨</div>
           <h3 class="card-title">作品展示</h3>
-          <p class="card-description">查看我的创意作品和项目案例，见证技术与艺术的完美结合</p>
+          <p class="card-description">
+            查看我的创意作品和项目案例，见证技术与艺术的完美结合
+          </p>
           <div class="card-arrow">→</div>
         </div>
-        
+
         <div class="feature-card" @click="$router.push('/blog')">
           <div class="card-icon">📝</div>
           <h3 class="card-title">技术博客</h3>
-          <p class="card-description">分享技术心得和学习笔记，记录成长路上的点点滴滴</p>
+          <p class="card-description">
+            分享技术心得和学习笔记，记录成长路上的点点滴滴
+          </p>
           <div class="card-arrow">→</div>
         </div>
-        
+
         <div class="feature-card" @click="$router.push('/bookmarks')">
           <div class="card-icon">🔗</div>
           <h3 class="card-title">精品收藏</h3>
-          <p class="card-description">精心收藏的优质网站和资源，助力高效工作与学习</p>
+          <p class="card-description">
+            精心收藏的优质网站和资源，助力高效工作与学习
+          </p>
           <div class="card-arrow">→</div>
         </div>
-        
+
         <div class="feature-card" @click="$router.push('/about')">
           <div class="card-icon">👨‍💻</div>
           <h3 class="card-title">关于我</h3>
-          <p class="card-description">了解我的技能背景和个人经历，一起探讨技术的无限可能</p>
+          <p class="card-description">
+            了解我的技能背景和个人经历，一起探讨技术的无限可能
+          </p>
           <div class="card-arrow">→</div>
         </div>
       </div>
@@ -120,6 +128,7 @@ import { ref, onMounted } from 'vue'
 
 // 简化的特效展示，移除复杂的三角剖分逻辑
 const container = ref<HTMLElement | null>(null)
+const imageUrl = ref('/src/assets/images/blue.png')
 
 const imageClickHandler = () => {
   // 简单的点击反馈效果
@@ -139,7 +148,7 @@ onMounted(() => {
   // 添加一个简单的占位图片
   if (container.value) {
     const img = document.createElement('img')
-    img.src = 'https://via.placeholder.com/600x400/667eea/ffffff?text=点击体验特效'
+    img.src = imageUrl.value
     img.style.width = '100%'
     img.style.height = 'auto'
     img.style.borderRadius = '10px'
@@ -257,9 +266,16 @@ onMounted(() => {
 }
 
 @keyframes wave {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(10deg); }
-  75% { transform: rotate(-10deg); }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
 }
 
 .hero-description {
@@ -288,14 +304,14 @@ onMounted(() => {
 
 /* 科技风格标签 */
 :global(.theme-tech) .tag {
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 194, 255, 0.1);
   border: 1px solid rgba(0, 255, 255, 0.3);
   color: #00ffff;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 194, 255, 0.2);
 }
 
 :global(.theme-tech) .tag:hover {
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.2);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
   transform: translateY(-2px);
 }
@@ -376,14 +392,14 @@ onMounted(() => {
 }
 
 :global(.theme-tech) .cta-btn.secondary {
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 194, 255, 0.1);
   color: #00ffff;
   border: 2px solid rgba(0, 255, 255, 0.5);
   font-family: 'Courier New', 'Monaco', monospace;
 }
 
 :global(.theme-tech) .cta-btn.secondary:hover {
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.2);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
@@ -467,18 +483,35 @@ onMounted(() => {
   text-shadow: 0 0 10px rgba(71, 85, 105, 0.2);
 }
 
-.float-item:nth-child(1) { top: 20%; left: 20%; }
-.float-item:nth-child(2) { top: 10%; right: 20%; }
-.float-item:nth-child(3) { bottom: 30%; left: 10%; }
-.float-item:nth-child(4) { bottom: 20%; right: 10%; }
-.float-item:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.float-item:nth-child(1) {
+  top: 20%;
+  left: 20%;
+}
+.float-item:nth-child(2) {
+  top: 10%;
+  right: 20%;
+}
+.float-item:nth-child(3) {
+  bottom: 30%;
+  left: 10%;
+}
+.float-item:nth-child(4) {
+  bottom: 20%;
+  right: 10%;
+}
+.float-item:nth-child(5) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 @keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  50% { 
-    transform: translateY(-10px) rotate(2deg); 
+  50% {
+    transform: translateY(-10px) rotate(2deg);
   }
 }
 
@@ -623,13 +656,13 @@ canvas {
 
 /* 科技风格功能卡片 */
 :global(.theme-tech) .feature-card {
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
   color: #e2e8f0 !important;
 }
 
 :global(.theme-tech) .feature-card:hover {
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 194, 255, 0.2);
   box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
 }
 
@@ -664,7 +697,12 @@ canvas {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -737,34 +775,116 @@ canvas {
 .stat-item {
   text-align: center;
   color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.stat-item:hover::before {
+  left: 100%;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* 科技风格统计项 */
-:global(.theme-tech) .stat-item {
-  color: #e2e8f0;
+html.theme-tech .stat-item {
+  background: rgba(0, 194, 255, 0.1) !important;
+  border: 1px solid rgba(0, 194, 255, 0.2) !important;
+  color: #e2e8f0 !important;
 }
 
-:global(.theme-tech) .stat-number {
+html.theme-tech .stat-item::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  ) !important;
+}
+
+html.theme-tech .stat-item:hover {
+  background: rgba(0, 194, 255, 0.2) !important;
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3) !important;
+}
+
+html.theme-tech .stat-number {
   color: #00ffff !important;
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
 /* 樱花风格统计项 */
-:global(.theme-sakura) .stat-item {
-  color: #8b1538;
+html.theme-sakura .stat-item {
+  background: rgba(139, 21, 56, 0.1) !important;
+  border: 1px solid rgba(139, 21, 56, 0.2) !important;
+  color: #8b1538 !important;
 }
 
-:global(.theme-sakura) .stat-number {
+html.theme-sakura .stat-item::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 21, 56, 0.1),
+    transparent
+  ) !important;
+}
+
+html.theme-sakura .stat-item:hover {
+  background: rgba(139, 21, 56, 0.2) !important;
+  box-shadow: 0 15px 40px rgba(139, 21, 56, 0.3) !important;
+}
+
+html.theme-sakura .stat-number {
   color: #8b1538 !important;
   font-family: 'KaiTi', 'STKaiti', serif;
 }
 
 /* 水墨风格统计项 */
-:global(.theme-ink) .stat-item {
-  color: #2c3e50;
+html.theme-ink .stat-item {
+  background: rgba(44, 62, 80, 0.1) !important;
+  border: 1px solid rgba(44, 62, 80, 0.2) !important;
+  color: #2c3e50 !important;
 }
 
-:global(.theme-ink) .stat-number {
+html.theme-ink .stat-item::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(44, 62, 80, 0.1),
+    transparent
+  ) !important;
+}
+
+html.theme-ink .stat-item:hover {
+  background: rgba(44, 62, 80, 0.2) !important;
+  box-shadow: 0 15px 40px rgba(44, 62, 80, 0.3) !important;
+}
+
+html.theme-ink .stat-number {
   color: #2c3e50 !important;
   font-family: 'STSong', 'SimSun', 'KaiTi', serif;
 }
@@ -788,31 +908,31 @@ canvas {
     gap: 2rem;
     text-align: center;
   }
-  
+
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
   .hero-description {
     font-size: 1.1rem;
   }
-  
+
   .hero-actions {
     justify-content: center;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .feature-card {
     padding: 2rem;
   }
-  
+
   .stats-container {
     grid-template-columns: repeat(2, 1fr);
   }

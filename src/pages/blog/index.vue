@@ -19,25 +19,25 @@
           </template>
         </el-input>
       </div>
-      
+
       <div class="filter-controls">
         <el-select v-model="selectedCategory" placeholder="选择分类" clearable>
           <el-option label="全部分类" value="" />
-          <el-option 
-            v-for="category in categories" 
+          <el-option
+            v-for="category in categories"
             :key="category.key"
-            :label="category.name" 
-            :value="category.key" 
+            :label="category.name"
+            :value="category.key"
           />
         </el-select>
-        
+
         <el-select v-model="selectedTag" placeholder="选择标签" clearable>
           <el-option label="全部标签" value="" />
-          <el-option 
-            v-for="tag in allTags" 
+          <el-option
+            v-for="tag in allTags"
             :key="tag"
-            :label="tag" 
-            :value="tag" 
+            :label="tag"
+            :value="tag"
           />
         </el-select>
       </div>
@@ -65,8 +65,8 @@
 
     <!-- 文章列表 -->
     <div class="articles-list">
-      <div 
-        v-for="article in filteredArticles" 
+      <div
+        v-for="article in filteredArticles"
         :key="article.id"
         class="article-card"
         @click="goToArticle(article.id)"
@@ -77,20 +77,24 @@
             <div class="read-time">{{ article.readTime }} 分钟阅读</div>
           </div>
         </div>
-        
+
         <div class="article-content">
           <div class="article-meta">
-            <span class="category">{{ getCategoryName(article.category) }}</span>
+            <span class="category">{{
+              getCategoryName(article.category)
+            }}</span>
             <span class="date">{{ formatDate(article.publishDate) }}</span>
           </div>
-          
+
           <h2 class="article-title">{{ article.title }}</h2>
           <p class="article-summary">{{ article.summary }}</p>
-          
+
           <div class="article-tags">
-            <span v-for="tag in article.tags" :key="tag" class="tag">{{ tag }}</span>
+            <span v-for="tag in article.tags" :key="tag" class="tag">{{
+              tag
+            }}</span>
           </div>
-          
+
           <div class="article-footer">
             <div class="article-stats">
               <span class="stat">
@@ -106,9 +110,7 @@
                 {{ article.likes }}
               </span>
             </div>
-            <div class="read-more">
-              阅读全文 →
-            </div>
+            <div class="read-more">阅读全文 →</div>
           </div>
         </div>
       </div>
@@ -165,100 +167,100 @@ const articles = ref([
   {
     id: 1,
     title: 'Vue 3 Composition API 深度解析',
-    summary: '深入探讨 Vue 3 Composition API 的设计理念、使用方法和最佳实践，帮助开发者更好地理解和应用这一新特性。',
-    content: '...',
-    cover: 'https://via.placeholder.com/400x200/42b883/ffffff?text=Vue+3',
-    category: 'frontend',
-    tags: ['Vue3', 'Composition API', 'JavaScript'],
+    summary: '详细介绍Vue 3 Composition API的使用方法和最佳实践，包括响应式原理、生命周期钩子、依赖注入等核心概念。',
+    content: '这里是文章的完整内容...',
+    cover: '/src/assets/images/blue.png',
+    author: '前端开发者',
     publishDate: '2024-01-15',
     readTime: 8,
-    views: 1250,
-    comments: 23,
+    views: 1234,
     likes: 89,
-    author: '博主'
+    category: 'Vue.js',
+    tags: ['Vue 3', 'Composition API', '前端框架'],
+    featured: true
   },
   {
     id: 2,
-    title: 'TypeScript 高级类型系统实战',
-    summary: '通过实际案例学习 TypeScript 的高级类型特性，包括泛型、条件类型、映射类型等，提升代码的类型安全性。',
-    content: '...',
-    cover: 'https://via.placeholder.com/400x200/3178c6/ffffff?text=TypeScript',
-    category: 'frontend',
-    tags: ['TypeScript', '类型系统', '前端'],
-    publishDate: '2024-01-20',
+    title: 'TypeScript 进阶技巧与实战',
+    summary: '从基础语法到高级特性，全面掌握TypeScript在大型项目中的应用，提升代码质量和开发效率。',
+    content: '这里是文章的完整内容...',
+    cover: '/src/assets/images/blue.png',
+    author: '前端开发者',
+    publishDate: '2024-01-10',
     readTime: 12,
-    views: 980,
-    comments: 15,
+    views: 987,
     likes: 67,
-    author: '博主'
+    category: 'TypeScript',
+    tags: ['TypeScript', '类型系统', '前端开发'],
+    featured: true
   },
   {
     id: 3,
     title: 'Node.js 性能优化实践指南',
-    summary: '分享 Node.js 应用性能优化的实用技巧，包括内存管理、异步处理、数据库优化等方面的最佳实践。',
-    content: '...',
-    cover: 'https://via.placeholder.com/400x200/339933/ffffff?text=Node.js',
-    category: 'backend',
-    tags: ['Node.js', '性能优化', '后端'],
-    publishDate: '2024-01-25',
+    summary: '深入探讨Node.js应用的性能瓶颈和优化策略，包括内存管理、异步处理、数据库优化等方面。',
+    content: '这里是文章的完整内容...',
+    cover: '/src/assets/images/blue.png',
+    author: '后端开发者',
+    publishDate: '2024-01-05',
     readTime: 15,
-    views: 1580,
-    comments: 31,
-    likes: 124,
-    author: '博主'
+    views: 756,
+    likes: 45,
+    category: 'Node.js',
+    tags: ['Node.js', '性能优化', '后端开发'],
+    featured: false
   },
   {
     id: 4,
-    title: 'React Native 跨平台开发经验总结',
-    summary: '基于实际项目经验，总结 React Native 开发中的常见问题、解决方案和性能优化技巧。',
-    content: '...',
-    cover: 'https://via.placeholder.com/400x200/61dafb/ffffff?text=React+Native',
-    category: 'mobile',
-    tags: ['React Native', '跨平台', '移动开发'],
-    publishDate: '2024-02-01',
+    title: 'React Native 跨平台开发经验分享',
+    summary: '分享React Native在实际项目中的应用经验，包括组件设计、状态管理、原生模块集成等实用技巧。',
+    content: '这里是文章的完整内容...',
+    cover: '/src/assets/images/blue.png',
+    author: '移动端开发者',
+    publishDate: '2023-12-28',
     readTime: 10,
-    views: 756,
-    comments: 18,
-    likes: 45,
-    author: '博主'
+    views: 543,
+    likes: 32,
+    category: 'React Native',
+    tags: ['React Native', '跨平台', '移动开发'],
+    featured: false
   },
   {
     id: 5,
     title: 'Docker 容器化部署最佳实践',
-    summary: '详细介绍 Docker 在项目部署中的应用，包括镜像构建、容器编排、CI/CD 集成等实用技巧。',
-    content: '...',
-    cover: 'https://via.placeholder.com/400x200/2496ed/ffffff?text=Docker',
-    category: 'devops',
-    tags: ['Docker', '容器化', 'DevOps'],
-    publishDate: '2024-02-05',
-    readTime: 13,
-    views: 1120,
-    comments: 27,
-    likes: 78,
-    author: '博主'
+    summary: '从Docker基础到生产环境部署，全面介绍容器化技术在现代Web应用中的应用和最佳实践。',
+    content: '这里是文章的完整内容...',
+    cover: '/src/assets/images/blue.png',
+    author: '运维工程师',
+    publishDate: '2023-12-20',
+    readTime: 18,
+    views: 432,
+    likes: 28,
+    category: 'DevOps',
+    tags: ['Docker', '容器化', '部署'],
+    featured: false
   },
   {
     id: 6,
-    title: '算法刷题心得：动态规划专题',
-    summary: '系统总结动态规划算法的解题思路和常见模式，通过经典题目分析帮助理解核心概念。',
-    content: '...',
-    cover: 'https://via.placeholder.com/400x200/ff6b6b/ffffff?text=Algorithm',
-    category: 'algorithm',
-    tags: ['算法', '动态规划', 'LeetCode'],
-    publishDate: '2024-02-10',
+    title: '前端算法与数据结构实战',
+    summary: '结合前端开发场景，深入讲解常用算法和数据结构，提升编程思维和解决问题的能力。',
+    content: '这里是文章的完整内容...',
+    cover: '/src/assets/images/blue.png',
+    author: '算法工程师',
+    publishDate: '2023-12-15',
     readTime: 20,
-    views: 892,
-    comments: 12,
-    likes: 56,
-    author: '博主'
+    views: 321,
+    likes: 19,
+    category: '算法',
+    tags: ['算法', '数据结构', '编程思维'],
+    featured: false
   }
 ])
 
 // 计算属性
 const allTags = computed(() => {
   const tags = new Set<string>()
-  articles.value.forEach(article => {
-    article.tags.forEach(tag => tags.add(tag))
+  articles.value.forEach((article) => {
+    article.tags.forEach((tag) => tags.add(tag))
   })
   return Array.from(tags)
 })
@@ -272,21 +274,26 @@ const filteredArticles = computed(() => {
 
   // 按分类过滤
   if (selectedCategory.value) {
-    filtered = filtered.filter(article => article.category === selectedCategory.value)
+    filtered = filtered.filter(
+      (article) => article.category === selectedCategory.value
+    )
   }
 
   // 按标签过滤
   if (selectedTag.value) {
-    filtered = filtered.filter(article => article.tags.includes(selectedTag.value))
+    filtered = filtered.filter((article) =>
+      article.tags.includes(selectedTag.value)
+    )
   }
 
   // 按搜索关键词过滤
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(article => 
-      article.title.toLowerCase().includes(query) ||
-      article.summary.toLowerCase().includes(query) ||
-      article.tags.some(tag => tag.toLowerCase().includes(query))
+    filtered = filtered.filter(
+      (article) =>
+        article.title.toLowerCase().includes(query) ||
+        article.summary.toLowerCase().includes(query) ||
+        article.tags.some((tag) => tag.toLowerCase().includes(query))
     )
   }
 
@@ -295,7 +302,7 @@ const filteredArticles = computed(() => {
 
 // 方法
 const getCategoryName = (categoryKey: string) => {
-  const category = categories.find(cat => cat.key === categoryKey)
+  const category = categories.find((cat) => cat.key === categoryKey)
   return category ? category.name : categoryKey
 }
 
@@ -319,7 +326,7 @@ const handlePageChange = (page: number) => {
 }
 </script>
 
-<style scoped>
+<style>
 .blog-container {
   min-height: 100vh;
   background: transparent;
@@ -342,50 +349,304 @@ const handlePageChange = (page: number) => {
   margin-bottom: 0;
 }
 
-/* 主题样式 */
-/* 科技风格主题 */
-:global(.theme-tech) .blog-container {
+/* 科技风格主题样式 */
+html.theme-tech .blog-container {
   background: transparent;
 }
 
-:global(.theme-tech) .page-title {
-  color: #00ffff !important;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-  font-weight: bold;
+html.theme-tech .page-title {
+  background: linear-gradient(135deg, #00bfff, #87ceeb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
 }
 
-:global(.theme-tech) .page-subtitle {
-  color: #e2e8f0 !important;
+html.theme-tech .page-subtitle {
+  color: #c0c0c0;
+}
+
+html.theme-tech .blog-controls {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+}
+
+html.theme-tech .blog-controls::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
+}
+
+html.theme-tech .el-input__wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.15),
+    rgba(135, 206, 235, 0.1)
+  ) !important;
+  border: 1px solid rgba(0, 191, 255, 0.4) !important;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2) !important;
+}
+
+html.theme-tech .el-input__inner {
+  color: #c0c0c0 !important;
+  background: transparent !important;
+}
+
+html.theme-tech .el-input__inner::placeholder {
+  color: #a0a0a0 !important;
+}
+
+html.theme-tech .el-input__prefix-inner .el-icon {
+  color: #00bfff !important;
+}
+
+html.theme-tech .el-select .el-select__wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.15),
+    rgba(135, 206, 235, 0.1)
+  ) !important;
+  border: 1px solid rgba(0, 191, 255, 0.4) !important;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2) !important;
+}
+
+html.theme-tech .el-select .el-select__selected-item {
+  color: #c0c0c0 !important;
+}
+
+html.theme-tech .el-select .el-select__placeholder {
+  color: #a0a0a0 !important;
+}
+
+html.theme-tech .el-select .el-select__suffix .el-icon {
+  color: #00bfff !important;
+}
+
+html.theme-tech .stat-item {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+  color: #e2e8f0;
+}
+
+html.theme-tech .stat-item::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
+}
+
+html.theme-tech .stat-item:hover {
+  background: rgba(0, 194, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3);
+}
+
+html.theme-tech .stat-number {
+  color: #00bfff;
+  text-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+html.theme-tech .stat-label {
+  color: #c0c0c0;
+}
+
+html.theme-tech .article-card {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+  color: #e2e8f0;
+}
+
+html.theme-tech .article-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
+}
+
+html.theme-tech .article-card:hover {
+  background: rgba(0, 194, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+  transform: translateY(-10px);
+}
+
+html.theme-tech .article-title {
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+html.theme-tech .article-summary {
+  color: #c0c0c0;
+  position: relative;
+  z-index: 2;
+}
+
+html.theme-tech .article-meta {
+  color: #a0a0a0;
+  position: relative;
+  z-index: 2;
+}
+
+html.theme-tech .category {
+  background: linear-gradient(135deg, #00bfff, #4682b4);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
+  border: none;
+}
+
+html.theme-tech .article-tags .tag {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.2),
+    rgba(135, 206, 235, 0.1)
+  );
+  color: #c0c0c0;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+html.theme-tech .article-tags .tag:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.3),
+    rgba(135, 206, 235, 0.2)
+  );
+  border-color: rgba(0, 191, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+html.theme-tech .read-more {
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+html.theme-tech .article-footer {
+  border-top: 1px solid rgba(0, 255, 255, 0.3) !important;
+}
+
+html.theme-tech .stat {
+  color: #c0c0c0;
+  position: relative;
+  z-index: 2;
+}
+
+html.theme-tech .empty-state {
+  color: #c0c0c0;
+}
+
+html.theme-tech .empty-icon {
+  color: #00bfff;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+}
+
+html.theme-tech .el-pagination {
+  color: #c0c0c0;
+}
+
+html.theme-tech .el-pagination .el-pager li {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.15),
+    rgba(135, 206, 235, 0.1)
+  );
+  color: #c0c0c0;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+html.theme-tech .el-pagination .el-pager li:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.25),
+    rgba(135, 206, 235, 0.15)
+  );
+  color: #00bfff;
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
+}
+
+html.theme-tech .el-pagination .el-pager li.is-active {
+  background: linear-gradient(135deg, #00bfff, #4682b4);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+}
+
+html.theme-tech .el-pagination .btn-prev,
+html.theme-tech .el-pagination .btn-next {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.15),
+    rgba(135, 206, 235, 0.1)
+  );
+  color: #c0c0c0;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+html.theme-tech .el-pagination .btn-prev:hover,
+html.theme-tech .el-pagination .btn-next:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.25),
+    rgba(135, 206, 235, 0.15)
+  );
+  color: #00bfff;
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
+}
+
+html.theme-tech .el-pagination .el-pagination__jump {
+  color: #c0c0c0;
+}
+
+html.theme-tech .el-pagination .el-pagination__jump .el-input__inner {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 191, 255, 0.15),
+    rgba(135, 206, 235, 0.1)
+  );
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  color: #c0c0c0;
+  backdrop-filter: blur(10px);
 }
 
 /* 樱花风格主题 */
-:global(.theme-sakura) .blog-container {
+.theme-sakura .blog-container {
   background: transparent;
 }
 
-:global(.theme-sakura) .page-title {
+.theme-sakura .page-title {
   color: #8b1538 !important;
   font-family: 'KaiTi', 'STKaiti', serif;
   font-weight: bold;
 }
 
-:global(.theme-sakura) .page-subtitle {
+.theme-sakura .page-subtitle {
   color: #8b1538 !important;
   font-family: 'KaiTi', 'STKaiti', serif;
 }
 
 /* 水墨风格主题 */
-:global(.theme-ink) .blog-container {
+.theme-ink .blog-container {
   background: transparent;
 }
 
-:global(.theme-ink) .page-title {
+.theme-ink .page-title {
   color: #2c3e50 !important;
   font-family: 'STSong', 'SimSun', 'KaiTi', serif;
   font-weight: bold;
 }
 
-:global(.theme-ink) .page-subtitle {
+.theme-ink .page-subtitle {
   color: #2c3e50 !important;
   font-family: 'STSong', 'SimSun', 'KaiTi', serif;
 }
@@ -400,34 +661,84 @@ const handlePageChange = (page: number) => {
   max-width: 800px;
   margin: 0 auto 3rem;
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   padding: 2rem;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
 }
 
-/* 科技风格控制区 */
-:global(.theme-tech) .blog-controls {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 255, 255, 0.3);
+.blog-controls::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
 }
 
-/* 樱花风格控制区 */
-:global(.theme-sakura) .blog-controls {
-  background: rgba(251, 113, 133, 0.1);
-  border: 1px solid rgba(251, 113, 133, 0.2);
+.blog-controls:hover::before {
+  left: 100%;
 }
 
-/* 水墨风格控制区 */
-:global(.theme-ink) .blog-controls {
-  background: rgba(71, 85, 105, 0.1);
-  border: 1px solid rgba(71, 85, 105, 0.2);
+/* 科技风格控制区域 */
+html.theme-tech .blog-controls {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+}
+
+html.theme-tech .blog-controls::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
+}
+
+/* 樱花风格控制区域 */
+.theme-sakura .blog-controls {
+  background: rgba(139, 21, 56, 0.1);
+  border: 1px solid rgba(139, 21, 56, 0.2);
+}
+
+.theme-sakura .blog-controls::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 21, 56, 0.1),
+    transparent
+  );
+}
+
+/* 水墨风格控制区域 */
+.theme-ink .blog-controls {
+  background: rgba(44, 62, 80, 0.1);
+  border: 1px solid rgba(44, 62, 80, 0.2);
+}
+
+.theme-ink .blog-controls::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(44, 62, 80, 0.1),
+    transparent
+  );
 }
 
 .search-box {
   margin-bottom: 1.5rem;
 }
 
-.search-box :deep(.el-input__wrapper) {
+.search-box .el-input__wrapper {
   border-radius: 25px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -452,47 +763,104 @@ const handlePageChange = (page: number) => {
 
 .stat-item {
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   padding: 1.5rem;
-  border-radius: 15px;
+  border-radius: 20px;
   text-align: center;
   color: white;
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.stat-item:hover::before {
+  left: 100%;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* 科技风格统计项 */
-:global(.theme-tech) .stat-item {
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.2);
+html.theme-tech .stat-item {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
   color: #e2e8f0;
 }
 
-:global(.theme-tech) .stat-number {
-  color: #00ffff !important;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+html.theme-tech .stat-item::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
+}
+
+html.theme-tech .stat-item:hover {
+  background: rgba(0, 194, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3);
 }
 
 /* 樱花风格统计项 */
-:global(.theme-sakura) .stat-item {
+.theme-sakura .stat-item {
   background: rgba(139, 21, 56, 0.1);
   border: 1px solid rgba(139, 21, 56, 0.2);
   color: #8b1538;
 }
 
-:global(.theme-sakura) .stat-number {
-  color: #8b1538 !important;
-  font-family: 'KaiTi', 'STKaiti', serif;
+.theme-sakura .stat-item::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 21, 56, 0.1),
+    transparent
+  );
+}
+
+.theme-sakura .stat-item:hover {
+  background: rgba(139, 21, 56, 0.2);
+  box-shadow: 0 15px 40px rgba(139, 21, 56, 0.3);
 }
 
 /* 水墨风格统计项 */
-:global(.theme-ink) .stat-item {
+.theme-ink .stat-item {
   background: rgba(44, 62, 80, 0.1);
   border: 1px solid rgba(44, 62, 80, 0.2);
   color: #2c3e50;
 }
 
-:global(.theme-ink) .stat-number {
-  color: #2c3e50 !important;
-  font-family: 'STSong', 'SimSun', 'KaiTi', serif;
+.theme-ink .stat-item::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(44, 62, 80, 0.1),
+    transparent
+  );
+}
+
+.theme-ink .stat-item:hover {
+  background: rgba(44, 62, 80, 0.2);
+  box-shadow: 0 15px 40px rgba(44, 62, 80, 0.3);
 }
 
 .stat-number {
@@ -516,141 +884,108 @@ const handlePageChange = (page: number) => {
 }
 
 .article-card {
-  background: white;
-  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
 }
 
-/* 科技风格文章卡片 */
-:global(.theme-tech) .article-card {
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 1;
 }
 
-:global(.theme-tech) .article-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
-  border-color: rgba(0, 255, 255, 0.5);
-}
-
-:global(.theme-tech) .article-title {
-  color: #00ffff !important;
-}
-
-:global(.theme-tech) .article-summary {
-  color: #e2e8f0 !important;
-}
-
-:global(.theme-tech) .category {
-  background: #00ffff;
-  color: #000;
-}
-
-:global(.theme-tech) .date {
-  color: #e2e8f0 !important;
-}
-
-:global(.theme-tech) .tag {
-  background: rgba(0, 255, 255, 0.2);
-  color: #e2e8f0 !important;
-}
-
-:global(.theme-tech) .stat {
-  color: #e2e8f0 !important;
-}
-
-:global(.theme-tech) .read-more {
-  color: #00ffff !important;
-}
-
-/* 樱花风格文章卡片 */
-:global(.theme-sakura) .article-card {
-  background: rgba(255, 247, 247, 0.9);
-  border: 1px solid rgba(139, 21, 56, 0.2);
-  box-shadow: 0 10px 30px rgba(139, 21, 56, 0.1);
-}
-
-:global(.theme-sakura) .article-card:hover {
-  box-shadow: 0 20px 40px rgba(139, 21, 56, 0.2);
-}
-
-:global(.theme-sakura) .article-title {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .article-summary {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .category {
-  background: #8b1538;
-  color: white;
-}
-
-:global(.theme-sakura) .date {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .tag {
-  background: rgba(139, 21, 56, 0.2);
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .stat {
-  color: #8b1538 !important;
-}
-
-:global(.theme-sakura) .read-more {
-  color: #8b1538 !important;
-}
-
-/* 水墨风格文章卡片 */
-:global(.theme-ink) .article-card {
-  background: rgba(248, 250, 252, 0.9);
-  border: 1px solid rgba(44, 62, 80, 0.2);
-  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1);
-}
-
-:global(.theme-ink) .article-card:hover {
-  box-shadow: 0 20px 40px rgba(44, 62, 80, 0.2);
-}
-
-:global(.theme-ink) .article-title {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .article-summary {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .category {
-  background: #2c3e50;
-  color: white;
-}
-
-:global(.theme-ink) .date {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .tag {
-  background: rgba(44, 62, 80, 0.2);
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .stat {
-  color: #2c3e50 !important;
-}
-
-:global(.theme-ink) .read-more {
-  color: #2c3e50 !important;
+.article-card:hover::before {
+  left: 100%;
 }
 
 .article-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* 科技风格文章卡片 */
+html.theme-tech .article-card {
+  background: rgba(0, 194, 255, 0.1);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+  color: #e2e8f0;
+}
+
+html.theme-tech .article-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 194, 255, 0.1),
+    transparent
+  );
+}
+
+html.theme-tech .article-card:hover {
+  background: rgba(0, 194, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+  transform: translateY(-10px);
+}
+
+/* 樱花风格文章卡片 */
+.theme-sakura .article-card {
+  background: rgba(139, 21, 56, 0.1);
+  border: 1px solid rgba(139, 21, 56, 0.2);
+  color: #8b1538;
+}
+
+.theme-sakura .article-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 21, 56, 0.1),
+    transparent
+  );
+}
+
+.theme-sakura .article-card:hover {
+  background: rgba(139, 21, 56, 0.2);
+  box-shadow: 0 20px 60px rgba(139, 21, 56, 0.3);
+  transform: translateY(-10px);
+}
+
+/* 水墨风格文章卡片 */
+.theme-ink .article-card {
+  background: rgba(44, 62, 80, 0.1);
+  border: 1px solid rgba(44, 62, 80, 0.2);
+  color: #2c3e50;
+}
+
+.theme-ink .article-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(44, 62, 80, 0.1),
+    transparent
+  );
+}
+
+.theme-ink .article-card:hover {
+  background: rgba(44, 62, 80, 0.2);
+  box-shadow: 0 20px 60px rgba(44, 62, 80, 0.3);
+  transform: translateY(-10px);
 }
 
 .article-image {
@@ -745,21 +1080,6 @@ const handlePageChange = (page: number) => {
   border-top: 1px solid #e2e8f0;
 }
 
-/* 科技风格文章底部 */
-:global(.theme-tech) .article-footer {
-  border-top-color: rgba(59, 130, 246, 0.2);
-}
-
-/* 樱花风格文章底部 */
-:global(.theme-sakura) .article-footer {
-  border-top-color: rgba(251, 113, 133, 0.2);
-}
-
-/* 水墨风格文章底部 */
-:global(.theme-ink) .article-footer {
-  border-top-color: rgba(71, 85, 105, 0.2);
-}
-
 .article-stats {
   display: flex;
   gap: 1rem;
@@ -787,17 +1107,17 @@ const handlePageChange = (page: number) => {
 }
 
 /* 科技风格空状态 */
-:global(.theme-tech) .empty-state {
-  color: #e2e8f0;
+html.theme-tech .empty-state {
+  color: #c0c0c0;
 }
 
 /* 樱花风格空状态 */
-:global(.theme-sakura) .empty-state {
+.theme-sakura .empty-state {
   color: #881337;
 }
 
 /* 水墨风格空状态 */
-:global(.theme-ink) .empty-state {
+.theme-ink .empty-state {
   color: #334155;
 }
 
@@ -822,27 +1142,27 @@ const handlePageChange = (page: number) => {
   .blog-container {
     padding: 1rem;
   }
-  
+
   .page-title {
     font-size: 2rem;
   }
-  
+
   .blog-controls {
     padding: 1.5rem;
   }
-  
+
   .filter-controls {
     flex-direction: column;
   }
-  
+
   .blog-stats {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .article-content {
     padding: 1.5rem;
   }
-  
+
   .article-footer {
     flex-direction: column;
     gap: 1rem;
