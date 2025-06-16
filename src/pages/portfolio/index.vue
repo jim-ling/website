@@ -172,42 +172,42 @@ const projects = ref([
     id: 3,
     title: '任务管理应用',
     description: '功能丰富的任务管理工具，支持项目分组、优先级设置、进度跟踪、团队协作等功能。',
+    fullDescription: '一个专业的任务管理应用，帮助个人和团队更好地组织和跟踪工作进度。支持创建项目、添加任务、设置优先级、分配成员、设置截止日期等功能。提供多种视图模式：列表视图、看板视图、日历视图、甘特图等。集成了实时通知、文件附件、评论讨论等协作功能。',
     image: '/src/assets/images/blue.png',
     technologies: ['React', 'Redux', 'Ant Design', 'Express'],
+    tags: [],
     category: 'web',
-    demoUrl: 'https://task-demo.com',
-    codeUrl: 'https://github.com/username/task-manager',
+    demo: 'https://task-demo.com',
+    github: 'https://github.com/username/task-manager',
     date: '2023-11-10',
-    featured: false,
-    description_full: '一个专业的任务管理应用，帮助个人和团队更好地组织和跟踪工作进度。支持创建项目、添加任务、设置优先级、分配成员、设置截止日期等功能。提供多种视图模式：列表视图、看板视图、日历视图、甘特图等。集成了实时通知、文件附件、评论讨论等协作功能。',
     features: ['项目管理', '多视图模式', '团队协作', '实时通知', '文件管理', '数据统计']
   },
   {
     id: 4,
     title: '天气预报应用',
     description: '基于地理位置的天气预报应用，提供详细的天气信息、预警提醒和美观的数据可视化。',
+    fullDescription: '一个现代化的天气预报应用，集成了多个天气数据源，提供准确的天气信息。支持自动定位和手动搜索城市，显示当前天气、24小时预报、7天预报等信息。使用ECharts进行数据可视化，展示温度趋势、降水概率、空气质量等数据。采用PWA技术，支持离线使用和桌面安装。',
     image: '/src/assets/images/blue.png',
     technologies: ['Vue 3', 'Composition API', 'ECharts', 'PWA'],
+    tags: [],
     category: 'mobile',
-    demoUrl: 'https://weather-demo.com',
-    codeUrl: 'https://github.com/username/weather-app',
+    demo: 'https://weather-demo.com',
+    github: 'https://github.com/username/weather-app',
     date: '2023-10-05',
-    featured: false,
-    description_full: '一个现代化的天气预报应用，集成了多个天气数据源，提供准确的天气信息。支持自动定位和手动搜索城市，显示当前天气、24小时预报、7天预报等信息。使用ECharts进行数据可视化，展示温度趋势、降水概率、空气质量等数据。采用PWA技术，支持离线使用和桌面安装。',
     features: ['多数据源', '精准定位', '数据可视化', 'PWA支持', '离线缓存', '桌面通知']
   },
   {
     id: 5,
     title: '代码格式化工具',
     description: '支持多种编程语言的在线代码格式化工具，提供语法高亮、错误检测、代码美化等功能。',
+    fullDescription: '一个功能强大的在线代码格式化工具，支持JavaScript、TypeScript、HTML、CSS、JSON等多种语言。集成了Monaco Editor提供专业的代码编辑体验，支持语法高亮、自动补全、错误提示等功能。使用Prettier和ESLint进行代码格式化和质量检测，帮助开发者写出更规范的代码。',
     image: '/src/assets/images/blue.png',
     technologies: ['TypeScript', 'Monaco Editor', 'Prettier', 'ESLint'],
+    tags: [],
     category: 'tool',
-    demoUrl: 'https://formatter-demo.com',
-    codeUrl: 'https://github.com/username/code-formatter',
+    demo: 'https://formatter-demo.com',
+    github: 'https://github.com/username/code-formatter',
     date: '2023-09-15',
-    featured: false,
-    description_full: '一个功能强大的在线代码格式化工具，支持JavaScript、TypeScript、HTML、CSS、JSON等多种语言。集成了Monaco Editor提供专业的代码编辑体验，支持语法高亮、自动补全、错误提示等功能。使用Prettier和ESLint进行代码格式化和质量检测，帮助开发者写出更规范的代码。',
     features: ['多语言支持', '实时格式化', '语法检测', '代码高亮', '快捷键支持', '配置导出']
   }
 ])
@@ -709,3 +709,4 @@ const openCode = (url: string) => {
 :global(.theme-ink) .project-meta {
   color: #2c3e50 !important;
 }
+</style>
