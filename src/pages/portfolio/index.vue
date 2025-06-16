@@ -104,7 +104,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+// import { ref, computed } from 'vue'
 
 // 定义项目类型
 interface Project {
@@ -144,28 +144,28 @@ const projects = ref([
     id: 1,
     title: '个人博客系统',
     description: '基于Vue 3和TypeScript开发的现代化博客系统，支持文章管理、分类标签、评论系统等功能。',
+    fullDescription: '这是一个功能完整的个人博客系统，采用前后端分离架构。前端使用Vue 3 + TypeScript + Element Plus构建，后端基于Node.js + Express + MongoDB。系统支持文章的增删改查、分类管理、标签系统、用户评论、文章搜索等功能。界面设计简洁美观，响应式布局适配各种设备。',
     image: '/src/assets/images/blue.png',
     technologies: ['Vue 3', 'TypeScript', 'Element Plus', 'Node.js'],
+    tags: ['Vue', '博客系统', '全栈'],
     category: 'web',
-    demoUrl: 'https://blog-demo.com',
-    codeUrl: 'https://github.com/username/blog-system',
+    demo: 'https://blog-demo.com',
+    github: 'https://github.com/username/blog-system',
     date: '2024-01-15',
-    featured: true,
-    description_full: '这是一个功能完整的个人博客系统，采用前后端分离架构。前端使用Vue 3 + TypeScript + Element Plus构建，后端基于Node.js + Express + MongoDB。系统支持文章的增删改查、分类管理、标签系统、用户评论、文章搜索等功能。界面设计简洁美观，响应式布局适配各种设备。',
     features: ['响应式设计', '文章管理', '分类标签', '评论系统', '搜索功能', 'SEO优化']
   },
   {
     id: 2,
     title: '图片破碎特效',
     description: '使用Canvas和WebGL实现的炫酷图片破碎动画效果，支持多种破碎模式和自定义参数。',
+    fullDescription: '这是一个基于Canvas和WebGL技术实现的图片破碎特效库。通过三角剖分算法将图片分割成多个三角形片段，然后使用物理引擎模拟破碎效果。支持多种破碎模式：爆炸式、重力式、螺旋式等。用户可以自定义破碎参数，如片段数量、动画时长、物理属性等。',
     image: '/src/assets/images/blue.png',
     technologies: ['JavaScript', 'Canvas', 'WebGL', 'GSAP'],
+    tags: ['动画', '特效', 'Canvas'],
     category: 'creative',
-    demoUrl: 'https://shatter-demo.com',
-    codeUrl: 'https://github.com/username/image-shatter',
+    demo: 'https://shatter-demo.com',
+    github: 'https://github.com/username/image-shatter',
     date: '2023-12-20',
-    featured: true,
-    description_full: '这是一个基于Canvas和WebGL技术实现的图片破碎特效库。通过三角剖分算法将图片分割成多个三角形片段，然后使用物理引擎模拟破碎效果。支持多种破碎模式：爆炸式、重力式、螺旋式等。用户可以自定义破碎参数，如片段数量、动画时长、物理属性等。',
     features: ['多种破碎模式', '物理引擎', '自定义参数', '高性能渲染', '移动端适配', 'API友好']
   },
   {
@@ -709,4 +709,3 @@ const openCode = (url: string) => {
 :global(.theme-ink) .project-meta {
   color: #2c3e50 !important;
 }
-</style> 
