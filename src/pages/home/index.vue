@@ -125,10 +125,10 @@
   
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-
+import blueImage from '@/assets/images/blue.png'
 // 简化的特效展示，移除复杂的三角剖分逻辑
 const container = ref<HTMLElement | null>(null)
-const imageUrl = ref('/src/assets/images/blue.png')
+const imageUrl = ref(blueImage)
 
 const imageClickHandler = () => {
   // 简单的点击反馈效果

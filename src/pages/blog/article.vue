@@ -138,18 +138,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
-import {
-  User,
-  Calendar,
-  Clock,
-  View,
-  ChatDotRound,
-  Star,
-  Loading
-} from '@element-plus/icons-vue'
+import blueImage from '@/assets/images/blue.png'
 
 // 定义文章类型
 interface Article {
@@ -341,7 +330,7 @@ export function useUser() {
       
       <p>在实际开发中，你可以根据项目的复杂度和团队的熟悉程度来选择使用 Options API 还是 Composition API，甚至可以在同一个项目中混合使用两种 API。</p>
     `,
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     category: 'frontend',
     tags: ['Vue 3', 'Composition API', '前端框架'],
     publishDate: '2024-01-15',
@@ -417,7 +406,7 @@ async function createUser(params: CreateUserParams): Promise&lt;ApiResponse&lt;U
       <h2>总结</h2>
       <p>掌握 TypeScript 的高级类型特性可以显著提升代码质量和开发效率。建议在实际项目中逐步应用这些特性，积累经验。</p>
     `,
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     category: 'frontend',
     tags: ['TypeScript', '类型系统', '前端'],
     publishDate: '2024-01-20',

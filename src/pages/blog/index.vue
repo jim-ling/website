@@ -137,9 +137,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { Search, View, ChatDotRound, Star } from '@element-plus/icons-vue'
+// import { ref, computed } from 'vue'
+// import { useRouter } from 'vue-router'
+// import { Search, View, ChatDotRound, Star } from '@element-plus/icons-vue'
+import blueImage from '@/assets/images/blue.png'
 
 const router = useRouter()
 
@@ -169,7 +170,7 @@ const articles = ref([
     title: 'Vue 3 Composition API 深度解析',
     summary: '详细介绍Vue 3 Composition API的使用方法和最佳实践，包括响应式原理、生命周期钩子、依赖注入等核心概念。',
     content: '这里是文章的完整内容...',
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     author: '前端开发者',
     publishDate: '2024-01-15',
     readTime: 8,
@@ -185,7 +186,7 @@ const articles = ref([
     title: 'TypeScript 进阶技巧与实战',
     summary: '从基础语法到高级特性，全面掌握TypeScript在大型项目中的应用，提升代码质量和开发效率。',
     content: '这里是文章的完整内容...',
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     author: '前端开发者',
     publishDate: '2024-01-10',
     readTime: 12,
@@ -201,7 +202,7 @@ const articles = ref([
     title: 'Node.js 性能优化实践指南',
     summary: '深入探讨Node.js应用的性能瓶颈和优化策略，包括内存管理、异步处理、数据库优化等方面。',
     content: '这里是文章的完整内容...',
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     author: '后端开发者',
     publishDate: '2024-01-05',
     readTime: 15,
@@ -216,7 +217,7 @@ const articles = ref([
     title: 'React Native 跨平台开发经验分享',
     summary: '分享React Native在实际项目中的应用经验，包括组件设计、状态管理、原生模块集成等实用技巧。',
     content: '这里是文章的完整内容...',
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     author: '移动端开发者',
     publishDate: '2023-12-28',
     readTime: 10,
@@ -231,7 +232,7 @@ const articles = ref([
     title: 'Docker 容器化部署最佳实践',
     summary: '从Docker基础到生产环境部署，全面介绍容器化技术在现代Web应用中的应用和最佳实践。',
     content: '这里是文章的完整内容...',
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     author: '运维工程师',
     publishDate: '2023-12-20',
     readTime: 18,
@@ -246,7 +247,7 @@ const articles = ref([
     title: '前端算法与数据结构实战',
     summary: '结合前端开发场景，深入讲解常用算法和数据结构，提升编程思维和解决问题的能力。',
     content: '这里是文章的完整内容...',
-    cover: '/src/assets/images/blue.png',
+    cover: blueImage,
     author: '算法工程师',
     publishDate: '2023-12-15',
     readTime: 20,
@@ -1171,4 +1172,3 @@ html.theme-tech .empty-state {
     align-items: flex-start;
   }
 }
-</style> 

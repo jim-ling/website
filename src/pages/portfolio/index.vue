@@ -138,6 +138,8 @@ const activeCategory = ref('all')
 const dialogVisible = ref(false)
 const selectedProject = ref<Project | null>(null)
 
+import blueImage from '@/assets/images/blue.png'
+
 // 项目数据
 const projects = ref([
   {
@@ -145,7 +147,7 @@ const projects = ref([
     title: '个人博客系统',
     description: '基于Vue 3和TypeScript开发的现代化博客系统，支持文章管理、分类标签、评论系统等功能。',
     fullDescription: '这是一个功能完整的个人博客系统，采用前后端分离架构。前端使用Vue 3 + TypeScript + Element Plus构建，后端基于Node.js + Express + MongoDB。系统支持文章的增删改查、分类管理、标签系统、用户评论、文章搜索等功能。界面设计简洁美观，响应式布局适配各种设备。',
-    image: '/src/assets/images/blue.png',
+    image: blueImage,
     technologies: ['Vue 3', 'TypeScript', 'Element Plus', 'Node.js'],
     tags: ['Vue', '博客系统', '全栈'],
     category: 'web',
@@ -159,7 +161,7 @@ const projects = ref([
     title: '图片破碎特效',
     description: '使用Canvas和WebGL实现的炫酷图片破碎动画效果，支持多种破碎模式和自定义参数。',
     fullDescription: '这是一个基于Canvas和WebGL技术实现的图片破碎特效库。通过三角剖分算法将图片分割成多个三角形片段，然后使用物理引擎模拟破碎效果。支持多种破碎模式：爆炸式、重力式、螺旋式等。用户可以自定义破碎参数，如片段数量、动画时长、物理属性等。',
-    image: '/src/assets/images/blue.png',
+    image: blueImage,
     technologies: ['JavaScript', 'Canvas', 'WebGL', 'GSAP'],
     tags: ['动画', '特效', 'Canvas'],
     category: 'creative',
@@ -173,7 +175,7 @@ const projects = ref([
     title: '任务管理应用',
     description: '功能丰富的任务管理工具，支持项目分组、优先级设置、进度跟踪、团队协作等功能。',
     fullDescription: '一个专业的任务管理应用，帮助个人和团队更好地组织和跟踪工作进度。支持创建项目、添加任务、设置优先级、分配成员、设置截止日期等功能。提供多种视图模式：列表视图、看板视图、日历视图、甘特图等。集成了实时通知、文件附件、评论讨论等协作功能。',
-    image: '/src/assets/images/blue.png',
+    image: blueImage,
     technologies: ['React', 'Redux', 'Ant Design', 'Express'],
     tags: [],
     category: 'web',
@@ -187,7 +189,7 @@ const projects = ref([
     title: '天气预报应用',
     description: '基于地理位置的天气预报应用，提供详细的天气信息、预警提醒和美观的数据可视化。',
     fullDescription: '一个现代化的天气预报应用，集成了多个天气数据源，提供准确的天气信息。支持自动定位和手动搜索城市，显示当前天气、24小时预报、7天预报等信息。使用ECharts进行数据可视化，展示温度趋势、降水概率、空气质量等数据。采用PWA技术，支持离线使用和桌面安装。',
-    image: '/src/assets/images/blue.png',
+    image: blueImage,
     technologies: ['Vue 3', 'Composition API', 'ECharts', 'PWA'],
     tags: [],
     category: 'mobile',
@@ -201,7 +203,7 @@ const projects = ref([
     title: '代码格式化工具',
     description: '支持多种编程语言的在线代码格式化工具，提供语法高亮、错误检测、代码美化等功能。',
     fullDescription: '一个功能强大的在线代码格式化工具，支持JavaScript、TypeScript、HTML、CSS、JSON等多种语言。集成了Monaco Editor提供专业的代码编辑体验，支持语法高亮、自动补全、错误提示等功能。使用Prettier和ESLint进行代码格式化和质量检测，帮助开发者写出更规范的代码。',
-    image: '/src/assets/images/blue.png',
+    image: blueImage,
     technologies: ['TypeScript', 'Monaco Editor', 'Prettier', 'ESLint'],
     tags: [],
     category: 'tool',
