@@ -175,6 +175,7 @@ const articles = ref([
     readTime: 8,
     views: 1234,
     likes: 89,
+    comments: 24,
     category: 'Vue.js',
     tags: ['Vue 3', 'Composition API', '前端框架'],
     featured: true
@@ -190,6 +191,7 @@ const articles = ref([
     readTime: 12,
     views: 987,
     likes: 67,
+    comments: 18,
     category: 'TypeScript',
     tags: ['TypeScript', '类型系统', '前端开发'],
     featured: true
