@@ -36,6 +36,7 @@
         >
           <span v-if="currentTheme === 'tech'">🚀</span>
           <span v-else-if="currentTheme === 'sakura'">🌸</span>
+          <span v-else-if="currentTheme === 'sakura2'">🌺</span>
           <span v-else>🎨</span>
         </button>
 
@@ -60,36 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-// ===== 主题初始化 - 必须在最开始执行 =====
-// 立即执行主题初始化，不依赖任何其他代码
-(() => {
-  try {
-    const savedTheme = localStorage.getItem('theme') || 'tech'
-    const validThemes = ['tech', 'sakura', 'ink']
-    const currentTheme = validThemes.includes(savedTheme) ? savedTheme : 'tech'
-
-    // 清理所有可能存在的主题类（包括新旧两套主题系统）
-    document.documentElement.classList.remove(
-      // 新主题系统的类名
-      'theme-tech', 'theme-sakura', 'theme-ink',
-      // 旧主题系统的类名
-      'normal', 'dark', 'dark-blue'
-    )
-    
-    // 添加当前主题类
-    document.documentElement.classList.add(`theme-${currentTheme}`)
-    
-    // 清理旧主题系统的 localStorage 缓存
-    localStorage.removeItem('v3-admin-vite-active-theme-name-key')
-    
-    console.log(`主题初始化完成: theme-${currentTheme}`)
-  } catch (error) {
-    console.error('主题初始化失败:', error)
-    document.documentElement.classList.add('theme-tech')
-  }
-})()
-
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
@@ -97,7 +69,8 @@ const route = useRoute()
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
-const currentTheme = ref('tech')
+// 从localStorage读取当前主题
+const currentTheme = ref(localStorage.getItem('theme') || 'tech')
 
 // 主题配置
 const themes = [
@@ -114,17 +87,18 @@ const themes = [
     description: '浪漫樱花季'
   },
   {
+    key: 'sakura2',
+    name: '樱花2风格',
+    icon: '🌺',
+    description: '飘落樱花雨'
+  },
+  {
     key: 'ink',
     name: '水墨风格',
     icon: '🎨',
     description: '中国水墨画'
   }
 ]
-
-// 从 localStorage 读取当前主题
-const savedTheme = localStorage.getItem('theme') || 'tech'
-const isValidTheme = themes.some((theme) => theme.key === savedTheme)
-currentTheme.value = isValidTheme ? savedTheme : 'tech'
 
 // 导航项配置
 const navItems = [
@@ -171,38 +145,59 @@ const closeMobileMenu = () => {
 
 // 主题切换
 const toggleTheme = () => {
+  const currentIndex = themes.findIndex(
+    (theme) => theme.key === currentTheme.value
+  )
+  const nextIndex = (currentIndex + 1) % themes.length
+  const newTheme = themes[nextIndex].key
+
+  currentTheme.value = newTheme
+  localStorage.setItem('theme', newTheme)
+  
+  // 简单的主题切换：清除所有主题类，添加新主题类
+  const html = document.documentElement
+  html.classList.remove('theme-tech', 'theme-sakura', 'theme-sakura2', 'theme-ink')
+  html.classList.add(`theme-${newTheme}`)
+  
+  // 清除樱花特效
+  clearSakuraEffect()
+  
+  // 如果是樱花2主题，启动樱花特效
+  if (newTheme === 'sakura2') {
+    startSakuraEffect()
+  }
+}
+
+// 清除樱花特效
+const clearSakuraEffect = () => {
+  const sakuraCanvas = document.getElementById('canvas_sakura')
+  if (sakuraCanvas) {
+    sakuraCanvas.remove()
+  }
+}
+
+// 启动樱花特效
+const startSakuraEffect = async () => {
   try {
-    const currentIndex = themes.findIndex(
-      (theme) => theme.key === currentTheme.value
-    )
-    const nextIndex = (currentIndex + 1) % themes.length
-    const newTheme = themes[nextIndex].key
-
-    // 防止重复切换
-    if (newTheme === currentTheme.value) return
-
-    currentTheme.value = newTheme
-
-    // 移除所有主题类（包括新旧两套主题系统）
-    const htmlElement = document.documentElement
-    htmlElement.classList.remove(
-      // 新主题系统的类名
-      'theme-tech', 
-      'theme-sakura', 
-      'theme-ink',
-      // 旧主题系统的类名
-      'normal',
-      'dark',
-      'dark-blue'
-    )
-
-    // 立即添加新主题类
-    htmlElement.classList.add(`theme-${currentTheme.value}`)
-    localStorage.setItem('theme', currentTheme.value)
-    
-    console.log(`主题切换完成: theme-${currentTheme.value}`)
+    const { startSakura } = await import('@/components/SakuraEffect/sakura')
+    startSakura()
   } catch (error) {
-    console.error('主题切换失败:', error)
+    console.error('Failed to load sakura effect:', error)
+  }
+}
+
+// 初始化主题
+const initTheme = () => {
+  const savedTheme = localStorage.getItem('theme') || 'sakura2'
+  currentTheme.value = savedTheme
+  
+  const html = document.documentElement
+  html.classList.remove('theme-tech', 'theme-sakura', 'theme-sakura2', 'theme-ink')
+  html.classList.add(`theme-${savedTheme}`)
+  
+  // 如果是樱花2主题，启动樱花特效
+  if (savedTheme === 'sakura2') {
+    startSakuraEffect()
   }
 }
 
@@ -216,10 +211,12 @@ watch(
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  initTheme() // 初始化主题
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  clearSakuraEffect()
 })
 </script>
 
@@ -476,157 +473,247 @@ onUnmounted(() => {
     height: 36px;
   }
 }
+</style>
 
-/* 主题样式 */
+<style>
+/* 主题样式 - 非scoped，确保能正确应用到全局 */
 /* 科技风格主题 */
-:global(.theme-tech) .top-nav {
-  background: rgba(5, 5, 5, 0.95);
-  border-bottom-color: rgba(0, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
+html.theme-tech .top-nav {
+  background: rgba(5, 5, 5, 0.95) !important;
+  border-bottom-color: rgba(0, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-:global(.theme-tech) .top-nav.scrolled {
-  background: rgba(0, 0, 0, 0.98);
-  box-shadow: 0 4px 20px rgba(0, 194, 255, 0.2);
+html.theme-tech .top-nav.scrolled {
+  background: rgba(0, 0, 0, 0.98) !important;
+  box-shadow: 0 4px 20px rgba(0, 194, 255, 0.2) !important;
 }
 
-:global(.theme-tech) .logo-title {
+html.theme-tech .logo-title {
   color: #00ffff !important;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-  font-family: 'Courier New', 'Monaco', monospace;
-  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important;
+  font-family: 'Courier New', 'Monaco', monospace !important;
+  font-weight: bold !important;
 }
 
-:global(.theme-tech) .logo-subtitle {
+html.theme-tech .logo-subtitle {
   color: #e2e8f0 !important;
-  font-family: 'Courier New', 'Monaco', monospace;
+  font-family: 'Courier New', 'Monaco', monospace !important;
 }
 
-:global(.theme-tech) .nav-link {
+html.theme-tech .nav-link {
   color: #e2e8f0 !important;
-  font-family: 'Courier New', 'Monaco', monospace;
+  font-family: 'Courier New', 'Monaco', monospace !important;
 }
 
-:global(.theme-tech) .nav-link:hover {
+html.theme-tech .nav-link:hover {
   color: #00ffff !important;
-  background: rgba(0, 194, 255, 0.1);
-  box-shadow: 0 0 10px rgba(0, 194, 255, 0.2);
+  background: rgba(0, 194, 255, 0.1) !important;
+  box-shadow: 0 0 10px rgba(0, 194, 255, 0.2) !important;
 }
 
-:global(.theme-tech) .nav-link.router-link-active {
+html.theme-tech .nav-link.router-link-active {
   color: #00ffff !important;
-  background: rgba(0, 194, 255, 0.2);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  background: rgba(0, 194, 255, 0.2) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
 }
 
-:global(.theme-tech) .action-btn {
-  background: rgba(0, 194, 255, 0.1);
+html.theme-tech .action-btn {
+  background: rgba(0, 194, 255, 0.1) !important;
   color: #00ffff !important;
-  border: 1px solid rgba(0, 255, 255, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
 }
 
-:global(.theme-tech) .action-btn:hover {
-  background: rgba(0, 194, 255, 0.2);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+html.theme-tech .action-btn:hover {
+  background: rgba(0, 194, 255, 0.2) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4) !important;
 }
 
-:global(.theme-tech) .nav-menu {
-  background: rgba(0, 0, 0, 0.98);
+html.theme-tech .nav-menu {
+  background: rgba(0, 0, 0, 0.98) !important;
 }
 
 /* 樱花风格主题 */
-:global(.theme-sakura) .top-nav {
-  background: rgba(255, 247, 247, 0.9);
-  border-bottom-color: rgba(139, 21, 56, 0.3);
-  backdrop-filter: blur(10px);
+html.theme-sakura .top-nav {
+  background: rgba(255, 247, 247, 0.9) !important;
+  border-bottom-color: rgba(139, 21, 56, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-:global(.theme-sakura) .top-nav.scrolled {
-  background: rgba(255, 247, 247, 0.95);
-  box-shadow: 0 4px 20px rgba(139, 21, 56, 0.2);
+html.theme-sakura .top-nav.scrolled {
+  background: rgba(255, 247, 247, 0.95) !important;
+  box-shadow: 0 4px 20px rgba(139, 21, 56, 0.2) !important;
 }
 
-:global(.theme-sakura) .logo-title {
+html.theme-sakura .logo-title {
   color: #8b1538 !important;
-  font-family: 'KaiTi', 'STKaiti', serif;
-  font-weight: bold;
+  font-family: 'KaiTi', 'STKaiti', serif !important;
+  font-weight: bold !important;
 }
 
-:global(.theme-sakura) .logo-subtitle {
+html.theme-sakura .logo-subtitle {
   color: #8b1538 !important;
-  font-family: 'KaiTi', 'STKaiti', serif;
+  font-family: 'KaiTi', 'STKaiti', serif !important;
 }
 
-:global(.theme-sakura) .nav-link {
+html.theme-sakura .nav-link {
   color: #8b1538 !important;
-  font-family: 'KaiTi', 'STKaiti', serif;
+  font-family: 'KaiTi', 'STKaiti', serif !important;
 }
 
-:global(.theme-sakura) .nav-link:hover {
+html.theme-sakura .nav-link:hover {
   color: #8b1538 !important;
-  background: rgba(139, 21, 56, 0.1);
+  background: rgba(139, 21, 56, 0.1) !important;
 }
 
-:global(.theme-sakura) .nav-link.router-link-active {
+html.theme-sakura .nav-link.router-link-active {
   color: #8b1538 !important;
-  background: rgba(139, 21, 56, 0.2);
+  background: rgba(139, 21, 56, 0.2) !important;
 }
 
-:global(.theme-sakura) .action-btn {
-  background: rgba(139, 21, 56, 0.1);
+html.theme-sakura .action-btn {
+  background: rgba(139, 21, 56, 0.1) !important;
   color: #8b1538 !important;
-  border: 1px solid rgba(139, 21, 56, 0.3);
+  border: 1px solid rgba(139, 21, 56, 0.3) !important;
 }
 
-:global(.theme-sakura) .nav-menu {
-  background: rgba(255, 247, 247, 0.95);
+html.theme-sakura .nav-menu {
+  background: rgba(255, 247, 247, 0.95) !important;
 }
 
 /* 水墨风格主题 */
-:global(.theme-ink) .top-nav {
-  background: rgba(248, 250, 252, 0.9);
-  border-bottom-color: rgba(44, 62, 80, 0.3);
-  backdrop-filter: blur(10px);
+html.theme-ink .top-nav {
+  background: rgba(248, 250, 252, 0.9) !important;
+  border-bottom-color: rgba(44, 62, 80, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-:global(.theme-ink) .top-nav.scrolled {
-  background: rgba(248, 250, 252, 0.95);
-  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.2);
+html.theme-ink .top-nav.scrolled {
+  background: rgba(248, 250, 252, 0.95) !important;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.2) !important;
 }
 
-:global(.theme-ink) .logo-title {
+html.theme-ink .logo-title {
   color: #2c3e50 !important;
-  font-family: 'STSong', 'SimSun', 'KaiTi', serif;
-  font-weight: bold;
+  font-family: 'STSong', 'SimSun', 'KaiTi', serif !important;
+  font-weight: bold !important;
 }
 
-:global(.theme-ink) .logo-subtitle {
+html.theme-ink .logo-subtitle {
   color: #2c3e50 !important;
-  font-family: 'STSong', 'SimSun', 'KaiTi', serif;
+  font-family: 'STSong', 'SimSun', 'KaiTi', serif !important;
 }
 
-:global(.theme-ink) .nav-link {
+html.theme-ink .nav-link {
   color: #2c3e50 !important;
-  font-family: 'STSong', 'SimSun', 'KaiTi', serif;
+  font-family: 'STSong', 'SimSun', 'KaiTi', serif !important;
 }
 
-:global(.theme-ink) .nav-link:hover {
+html.theme-ink .nav-link:hover {
   color: #2c3e50 !important;
-  background: rgba(44, 62, 80, 0.1);
+  background: rgba(44, 62, 80, 0.1) !important;
 }
 
-:global(.theme-ink) .nav-link.router-link-active {
+html.theme-ink .nav-link.router-link-active {
   color: #2c3e50 !important;
-  background: rgba(44, 62, 80, 0.2);
+  background: rgba(44, 62, 80, 0.2) !important;
 }
 
-:global(.theme-ink) .action-btn {
-  background: rgba(44, 62, 80, 0.1);
+html.theme-ink .action-btn {
+  background: rgba(44, 62, 80, 0.1) !important;
   color: #2c3e50 !important;
-  border: 1px solid rgba(44, 62, 80, 0.3);
+  border: 1px solid rgba(44, 62, 80, 0.3) !important;
 }
 
-:global(.theme-ink) .nav-menu {
-  background: rgba(248, 250, 252, 0.95);
+html.theme-ink .nav-menu {
+  background: rgba(248, 250, 252, 0.95) !important;
+}
+
+/* 樱花2主题 */
+html.theme-sakura2 .top-nav {
+  background: rgba(255, 240, 245, 0.9) !important;
+  border-bottom-color: rgba(255, 182, 193, 0.3) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+html.theme-sakura2 .top-nav.scrolled {
+  background: rgba(255, 228, 225, 0.95) !important;
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.2) !important;
+}
+
+html.theme-sakura2 .logo-title {
+  color: #d63384 !important;
+  text-shadow: 0 0 10px rgba(214, 51, 132, 0.3) !important;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  font-weight: bold !important;
+}
+
+html.theme-sakura2 .logo-subtitle {
+  color: #6f42c1 !important;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+}
+
+html.theme-sakura2 .nav-link {
+  color: #495057 !important;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+}
+
+html.theme-sakura2 .nav-link:hover {
+  color: #d63384 !important;
+  background: rgba(214, 51, 132, 0.1) !important;
+  box-shadow: 0 2px 8px rgba(255, 182, 193, 0.3) !important;
+}
+
+html.theme-sakura2 .nav-link.router-link-active {
+  color: #d63384 !important;
+  background: rgba(214, 51, 132, 0.15) !important;
+  box-shadow: 0 2px 8px rgba(255, 182, 193, 0.4) !important;
+}
+
+html.theme-sakura2 .action-btn {
+  background: rgba(214, 51, 132, 0.1) !important;
+  color: #d63384 !important;
+  border: 1px solid rgba(255, 182, 193, 0.3) !important;
+}
+
+html.theme-sakura2 .action-btn:hover {
+  background: rgba(214, 51, 132, 0.2) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4) !important;
+}
+
+html.theme-sakura2 .hamburger span {
+  background: #d63384 !important;
+}
+
+html.theme-sakura2 .mobile-overlay {
+  background: rgba(255, 240, 245, 0.8) !important;
+}
+
+/* 樱花2主题的特殊动画效果 */
+html.theme-sakura2 .nav-link::before {
+  content: '🌺';
+  position: absolute;
+  left: -20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: sakura2Float 3s ease-in-out infinite;
+}
+
+html.theme-sakura2 .nav-link:hover::before {
+  opacity: 1;
+  left: -15px;
+}
+
+@keyframes sakura2Float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(5deg); }
+  50% { transform: translateY(-6px) rotate(-5deg); }
+  75% { transform: translateY(-3px) rotate(3deg); }
+}
+
+html.theme-sakura2 .page-container {
+  background: rgba(255, 240, 245, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
 }
 </style> 

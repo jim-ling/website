@@ -205,10 +205,14 @@ const checkTheme = () => {
   const htmlElement = document.documentElement
   if (htmlElement.classList.contains('theme-sakura')) {
     currentTheme.value = 'sakura'
+  } else if (htmlElement.classList.contains('theme-sakura2')) {
+    currentTheme.value = 'sakura2'
   } else if (htmlElement.classList.contains('theme-tech')) {
     currentTheme.value = 'tech'
   } else if (htmlElement.classList.contains('theme-ink')) {
     currentTheme.value = 'ink'
+  } else {
+    currentTheme.value = 'none'
   }
 }
 

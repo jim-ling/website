@@ -9,15 +9,15 @@
           <div class="info-left">
             <span class="author">
               <el-icon><User /></el-icon>
-              前端开发工程师
+              超级飞行员
             </span>
             <span class="date">
               <el-icon><Calendar /></el-icon>
-              3+ 年开发经验
+              20+ 年工作经验
             </span>
             <span class="read-time">
               <el-icon><Clock /></el-icon>
-              持续学习中
+              持续战斗中
             </span>
           </div>
           <div class="info-right">
@@ -25,10 +25,10 @@
           </div>
         </div>
         <div class="article-tags">
-          <span class="tag">Vue.js</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">前端开发</span>
-          <span class="tag">全栈</span>
+          <span class="tag">外星人</span>
+          <span class="tag">超级胜利对</span>
+          <span class="tag">超级飞行员</span>
+          <span class="tag">全能</span>
         </div>
       </div>
 
@@ -46,10 +46,7 @@
         <div class="intro-content">
           <div class="avatar-section">
             <div class="avatar">
-              <img
-                src="/src/assets/images/avatar.png"
-                alt="头像"
-              />
+              <img src="/src/assets/images/avatar.png" alt="头像" />
             </div>
             <div class="social-links">
               <a
@@ -80,26 +77,24 @@
           </div>
 
           <div class="intro-text">
-            <h2>你好，我是一名前端开发工程师</h2>
+            <h2>你好，我是来自超级胜利队核心成员</h2>
             <p>
-              我是一名充满热情的前端开发工程师，专注于现代化Web应用开发。
-              拥有丰富的Vue.js、React、TypeScript开发经验，热衷于探索新技术，
-              追求代码质量和用户体验的完美平衡。
+              为了防止世界被破坏，为了爱与和平，我长期致力于地球的和平与安全。毕业3年却有
+              二十多年的丰富工作经验，我主导了多项关键任务，包括外星生命体研究、防卫系统建设以及星际飞行任务支持。
             </p>
             <p>
-              在工作中，我注重团队协作，善于沟通，能够快速理解业务需求并转化为技术方案。
-              同时，我也是一个终身学习者，持续关注前端技术发展趋势，
-              通过博客分享和开源项目贡献来回馈技术社区。
+              我擅长飞行器操控、异星环境适应性开发、外星科技解析等领域，具备极强的实战经验与战略思维。
+              同时我也是一名技术探索者，热衷于将先进的太空科技应用到日常任务中，提升团队作战效率和生存能力。
             </p>
 
             <div class="highlight-stats">
               <div class="stat">
-                <div class="stat-number">3+</div>
-                <div class="stat-label">年开发经验</div>
+                <div class="stat-number">20+</div>
+                <div class="stat-label">年工作经验</div>
               </div>
               <div class="stat">
                 <div class="stat-number">50+</div>
-                <div class="stat-label">项目经验</div>
+                <div class="stat-label">战斗经验</div>
               </div>
               <div class="stat">
                 <div class="stat-number">10+</div>
@@ -117,7 +112,7 @@
         <h2>🛠️ 技能栈</h2>
         <div class="skills-grid">
           <div class="skill-category">
-            <h3>前端框架</h3>
+            <h3>基本技能</h3>
             <div class="skills-list">
               <div
                 class="skill-item"
@@ -139,7 +134,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>后端技术</h3>
+            <h3>进阶技能</h3>
             <div class="skills-list">
               <div
                 class="skill-item"
@@ -161,7 +156,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>工具与其他</h3>
+            <h3>资源与武器</h3>
             <div class="skills-list">
               <div
                 class="skill-item"
@@ -282,21 +277,21 @@
               <div class="contact-icon">📧</div>
               <div class="contact-info">
                 <h4>邮箱</h4>
-                <p>example@email.com</p>
+                <p>feixingyuan@chaojishenlidui.com</p>
               </div>
             </div>
             <div class="contact-item">
               <div class="contact-icon">💬</div>
               <div class="contact-info">
                 <h4>微信</h4>
-                <p>your-wechat-id</p>
+                <p>feixingyuan_super</p>
               </div>
             </div>
             <div class="contact-item">
               <div class="contact-icon">📱</div>
               <div class="contact-info">
                 <h4>电话</h4>
-                <p>+86 138-0000-0000</p>
+                <p>+86 10086-666666-66</p>
               </div>
             </div>
           </div>
@@ -337,69 +332,86 @@ import {
 } from '@element-plus/icons-vue'
 
 // 技能数据
+// const frontendSkills = ref([
+//   { name: 'Vue.js', level: 90 },
+//   { name: 'React', level: 85 },
+//   { name: 'TypeScript', level: 88 },
+//   { name: 'JavaScript', level: 92 },
+//   { name: 'HTML/CSS', level: 95 },
+//   { name: 'Webpack', level: 80 }
+// ])
+// const backendSkills = ref([
+//   { name: 'Node.js', level: 75 },
+//   { name: 'Express', level: 70 },
+//   { name: 'MongoDB', level: 65 },
+//   { name: 'MySQL', level: 70 },
+//   { name: 'Redis', level: 60 }
+// ])
+// const toolSkills = ref([
+//   { name: 'Git', level: 90 },
+//   { name: 'Docker', level: 75 },
+//   { name: 'Linux', level: 70 },
+//   { name: 'Figma', level: 80 },
+//   { name: 'Photoshop', level: 75 }
+// ])
+
 const frontendSkills = ref([
-  { name: 'Vue.js', level: 90 },
-  { name: 'React', level: 85 },
-  { name: 'TypeScript', level: 88 },
-  { name: 'JavaScript', level: 92 },
-  { name: 'HTML/CSS', level: 95 },
-  { name: 'Webpack', level: 80 }
+  { name: '飞行驾驶技术', level: 95 },
+  { name: '飞行器控制编程', level: 90 },
+  { name: '外星生物分析', level: 88 },
+  { name: '地球防卫系统架构', level: 92 },
+  { name: '紧急应对协议设计', level: 90 },
+  { name: '星际通讯协议', level: 85 }
 ])
 
 const backendSkills = ref([
-  { name: 'Node.js', level: 75 },
-  { name: 'Express', level: 70 },
-  { name: 'MongoDB', level: 65 },
-  { name: 'MySQL', level: 70 },
-  { name: 'Redis', level: 60 }
+  { name: '外星基因数据库构建', level: 85 },
+  { name: '异星环境模拟系统', level: 80 },
+  { name: 'AI战术推演引擎', level: 75 },
+  { name: '地球防御调度平台', level: 90 },
+  { name: '星际能源管理系统', level: 80 }
 ])
 
 const toolSkills = ref([
-  { name: 'Git', level: 90 },
-  { name: 'Docker', level: 75 },
-  { name: 'Linux', level: 70 },
-  { name: 'Figma', level: 80 },
-  { name: 'Photoshop', level: 75 }
+  { name: '外星设备逆向工程', level: 90 },
+  { name: '星际地图导航系统', level: 85 },
+  { name: '宇宙战备资源调度', level: 88 },
+  { name: '异星语言识别工具', level: 80 },
+  { name: '空间站维护与调试', level: 85 }
 ])
 
 // 工作经历
 const experiences = ref([
   {
-    position: '高级前端开发工程师',
-    company: 'ABC科技有限公司',
-    period: '2022.03 - 至今',
-    description: '负责公司核心产品的前端开发工作，参与产品架构设计和技术选型。',
+    position: '地球和平联合武装部负责人',
+    company: '超级胜利队外星人研究基地北京分部',
+    period: '2000.03 - 至今',
+    description: '负责宇宙和平，保卫家园，研究未知生命体',
     achievements: [
-      '主导重构了公司主要产品的前端架构，性能提升40%',
-      '建立了完善的前端开发规范和CI/CD流程',
-      '指导初级开发人员，提升团队整体技术水平',
-      '参与多个重要项目的技术攻关，按时交付高质量产品'
+      '主导了外星人解剖、基因组学和基因修饰技术',
+      '建立了完善地球防卫系统',
+      '指导初级战斗人员的训练',
+      '参与多个重要的飞行项目，并且平安落地'
     ],
-    technologies: ['Vue 3', 'TypeScript', 'Element Plus', 'Vite', 'Docker']
-  },
-  {
-    position: '前端开发工程师',
-    company: 'XYZ互联网公司',
-    period: '2021.06 - 2022.02',
-    description: '参与多个Web应用的开发，负责用户界面设计和交互实现。',
-    achievements: [
-      '独立完成3个中型项目的前端开发工作',
-      '优化页面加载速度，首屏渲染时间减少50%',
-      '参与组件库的设计和开发，提升开发效率',
-      '协助后端团队进行API设计和联调工作'
-    ],
-    technologies: ['React', 'JavaScript', 'Ant Design', 'Webpack', 'Jest']
+    technologies: [
+      '飞行驾驶技术',
+      '飞行理论知识',
+      '导航技能​​',
+      '应急处理能力​​',
+      '通信技能​​',
+      '维修技能'
+    ]
   }
 ])
 
 // 教育背景
 const education = ref([
   {
-    degree: '计算机科学与技术 学士学位',
-    school: '某某大学',
+    degree: '计算超级技术 超级学位',
+    school: '超级胜利大学',
     period: '2017.09 - 2021.06',
     description:
-      '主修计算机科学与技术专业，学习了扎实的计算机基础知识，包括数据结构、算法、操作系统、计算机网络等核心课程。'
+      '主修计算超级技术专业，学习了扎实的超级知识，包括数超级结构、算超级法、操作超级系统、计算超级网络等超级课程。'
   }
 ])
 
@@ -408,32 +420,32 @@ const interests = ref([
   {
     name: '开源贡献',
     icon: '💻',
-    description: '积极参与开源项目，为社区贡献代码和文档'
+    description: '积极参与开源项目，为社区贡献变身代码'
   },
   {
     name: '技术写作',
     icon: '✍️',
-    description: '喜欢分享技术心得，在博客和技术社区发表文章'
+    description: '喜欢分享技术心得，贡献外星人相关文档'
   },
   {
     name: '摄影',
     icon: '📸',
-    description: '用镜头记录生活中的美好瞬间，培养审美能力'
+    description: '用镜头记录解剖外星人的美好瞬间，培养审美能力'
   },
   {
     name: '阅读',
     icon: '📚',
-    description: '广泛阅读技术书籍和人文社科类作品，拓展知识面'
+    description: '广泛阅读各类技能文章，这样能直接加点自己'
   },
   {
     name: '健身',
     icon: '💪',
-    description: '保持规律运动，维持健康的身体状态'
+    description: '保持规律运动，维持健康的身体状态，方便随时战斗'
   },
   {
     name: '旅行',
     icon: '🌍',
-    description: '探索不同的城市和文化，开阔视野'
+    description: '探索不同的城市和文化，防止地球被入侵'
   }
 ])
 </script>

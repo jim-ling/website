@@ -22,7 +22,7 @@ class Sakura {
         if (cxt) {
             cxt.save();
             //这个数值是花瓣大小,电脑端网页 40 效果最好
-            let xc = 25 * this.s;
+            let xc = 40 * this.s;
             cxt.translate(this.x, this.y);
             cxt.rotate(this.r);
             cxt.drawImage(img, 0, 0, xc, xc)
@@ -91,19 +91,19 @@ function getRandom(option: string) {
             ret = Math.random() * window.innerHeight;
             break;
         case 's':
-            ret = Math.random();
+            ret = Math.random() ;
             break;
         case 'r':
             ret = Math.random() * 6;
             break;
         case 'fnx':
-            random = -0.5 + Math.random();
+            random = -0.3 + Math.random() * 0.4;
             ret = function (x: number) {
-                return x + 0.5 * random - 1.7;
+                return x + 0.3 * random - 1;
             };
             break;
         case 'fny':
-            random = 1.5 + Math.random() * 0.7
+            random = 1.5 + Math.random() * 0.5
             ret = function (x: number, y: number) {
                 return y + random;
             };

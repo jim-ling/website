@@ -23,41 +23,83 @@ body {
 /* 主题样式 - 清晰版本 */
 /* 科技风格主题 - 现代科技风格 */
 html.theme-tech {
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  background: linear-gradient(135deg, #0f1419 0%, #1a202c 50%, #2d3748 100%);
+  /* 重新定义CSS变量 */
+  --v3-body-bg-color: transparent !important;
+  --el-bg-color-page: transparent !important;
 }
 
 html.theme-tech body {
-  background: transparent;
-  color: #8b9dc3;
-  font-family: 'Courier New', 'Monaco', monospace;
+  background: transparent !important;
+  color: #e2e8f0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+html.theme-tech #app {
+  background: transparent !important;
 }
 
 /* 樱花风格主题 - 樱花飘落效果 */
 html.theme-sakura {
   background: linear-gradient(135deg, #fef7f7 0%, #fce7e7 50%, #f8d7da 100%);
+  /* 重新定义CSS变量 */
+  --v3-body-bg-color: transparent !important;
+  --el-bg-color-page: transparent !important;
 }
 
 html.theme-sakura body {
-  background: transparent;
+  background: transparent !important;
   color: #8b1538;
   font-family: 'KaiTi', 'STKaiti', serif;
+}
+
+html.theme-sakura #app {
+  background: transparent !important;
+}
+
+/* 樱花2风格主题 - 浪漫粉色调 */
+html.theme-sakura2 {
+  background: linear-gradient(135deg, #ffeef5 0%, #ffe4e1 50%, #fff0f5 100%);
+  /* 重新定义CSS变量 */
+  --v3-body-bg-color: transparent !important;
+  --el-bg-color-page: transparent !important;
+  --el-bg-color: rgba(255, 240, 245, 0.8) !important;
+  --el-bg-color-overlay: rgba(255, 240, 245, 0.9) !important;
+}
+
+html.theme-sakura2 body {
+  background: transparent !important;
+  color: #495057;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+html.theme-sakura2 #app {
+  background: transparent !important;
 }
 
 /* 水墨风格主题 - 水墨晕染效果 */
 html.theme-ink {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+  /* 重新定义CSS变量 */
+  --v3-body-bg-color: transparent !important;
+  --el-bg-color-page: transparent !important;
 }
 
 html.theme-ink body {
-  background: transparent;
+  background: transparent !important;
   color: #2c3e50;
   font-family: 'STSong', 'SimSun', 'KaiTi', serif;
   font-weight: 500;
 }
 
+html.theme-ink #app {
+  background: transparent !important;
+}
+
 /* 确保所有文字清晰可见 */
 html.theme-tech *,
 html.theme-sakura *,
+html.theme-sakura2 *,
 html.theme-ink * {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -65,29 +107,29 @@ html.theme-ink * {
 }
 
 /* 统一字体大小 */
-html.theme-tech h1, html.theme-sakura h1, html.theme-ink h1,
-html.theme-tech .hero-title, html.theme-sakura .hero-title, html.theme-ink .hero-title,
-html.theme-tech .page-title, html.theme-sakura .page-title, html.theme-ink .page-title {
+html.theme-tech h1, html.theme-sakura h1, html.theme-sakura2 h1, html.theme-ink h1,
+html.theme-tech .hero-title, html.theme-sakura .hero-title, html.theme-sakura2 .hero-title, html.theme-ink .hero-title,
+html.theme-tech .page-title, html.theme-sakura .page-title, html.theme-sakura2 .page-title, html.theme-ink .page-title {
   font-size: 3rem;
   line-height: 1.2;
   margin-bottom: 1.5rem;
 }
 
-html.theme-tech h2, html.theme-sakura h2, html.theme-ink h2,
-html.theme-tech .section-title, html.theme-sakura .section-title, html.theme-ink .section-title {
+html.theme-tech h2, html.theme-sakura h2, html.theme-sakura2 h2, html.theme-ink h2,
+html.theme-tech .section-title, html.theme-sakura .section-title, html.theme-sakura2 .section-title, html.theme-ink .section-title {
   font-size: 2.5rem;
   line-height: 1.3;
   margin-bottom: 1rem;
 }
 
-html.theme-tech h3, html.theme-sakura h3, html.theme-ink h3 {
+html.theme-tech h3, html.theme-sakura h3, html.theme-sakura2 h3, html.theme-ink h3 {
   font-size: 1.8rem;
   line-height: 1.4;
   margin-bottom: 0.8rem;
 }
 
-html.theme-tech p, html.theme-sakura p, html.theme-ink p,
-html.theme-tech .hero-description, html.theme-sakura .hero-description, html.theme-ink .hero-description {
+html.theme-tech p, html.theme-sakura p, html.theme-sakura2 p, html.theme-ink p,
+html.theme-tech .hero-description, html.theme-sakura .hero-description, html.theme-sakura2 .hero-description, html.theme-ink .hero-description {
   font-size: 1.1rem;
   line-height: 1.6;
 }
@@ -432,6 +474,57 @@ html.theme-ink .italic {
   color: #2c3e50 !important;
 }
 
+/* 樱花2风格文字增强 */
+html.theme-sakura .italic {
+  color: #8b1538 !important;
+}
+
+/* 樱花2风格文字增强 */
+html.theme-sakura2 h1,
+html.theme-sakura2 h2,
+html.theme-sakura2 h3,
+html.theme-sakura2 .hero-title,
+html.theme-sakura2 .page-title {
+  color: #495057 !important;
+  font-weight: bold;
+}
+
+html.theme-sakura2 p,
+html.theme-sakura2 span,
+html.theme-sakura2 div,
+html.theme-sakura2 .text-content,
+html.theme-sakura2 .description,
+html.theme-sakura2 .content,
+html.theme-sakura2 .article-content,
+html.theme-sakura2 .blog-content,
+html.theme-sakura2 a,
+html.theme-sakura2 button,
+html.theme-sakura2 .btn,
+html.theme-sakura2 .link,
+html.theme-sakura2 input,
+html.theme-sakura2 textarea,
+html.theme-sakura2 select,
+html.theme-sakura2 .card,
+html.theme-sakura2 .container,
+html.theme-sakura2 .wrapper,
+html.theme-sakura2 .section,
+html.theme-sakura2 li,
+html.theme-sakura2 ul,
+html.theme-sakura2 ol,
+html.theme-sakura2 table,
+html.theme-sakura2 td,
+html.theme-sakura2 th,
+html.theme-sakura2 small,
+html.theme-sakura2 .small,
+html.theme-sakura2 .text-sm,
+html.theme-sakura2 .meta,
+html.theme-sakura2 .subtitle,
+html.theme-sakura2 em,
+html.theme-sakura2 i,
+html.theme-sakura2 .italic {
+  color: #495057 !important;
+}
+
 /* 主题动画效果 */
 @keyframes cyber-pulse {
   0%, 100% {
@@ -506,6 +599,20 @@ html.theme-sakura ::-webkit-scrollbar-thumb:hover {
   background: rgba(139, 21, 56, 0.5);
 }
 
+/* 樱花2风格滚动条 */
+html.theme-sakura2 ::-webkit-scrollbar-track {
+  background: rgba(73, 80, 87, 0.1);
+}
+
+html.theme-sakura2 ::-webkit-scrollbar-thumb {
+  background: rgba(73, 80, 87, 0.3);
+  border-radius: 4px;
+}
+
+html.theme-sakura2 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(73, 80, 87, 0.5);
+}
+
 /* 水墨风格滚动条 */
 html.theme-ink ::-webkit-scrollbar-track {
   background: rgba(44, 62, 80, 0.1);
@@ -533,6 +640,12 @@ html.theme-sakura ::selection {
   color: inherit;
 }
 
+/* 樱花2风格 */
+html.theme-sakura2 ::selection {
+  background: rgba(73, 80, 87, 0.3);
+  color: inherit;
+}
+
 /* 水墨风格 */
 html.theme-ink ::selection {
   background: rgba(71, 85, 105, 0.3);
@@ -551,6 +664,13 @@ html.theme-tech a:focus {
 html.theme-sakura button:focus,
 html.theme-sakura a:focus {
   outline: 2px solid rgba(251, 113, 133, 0.5);
+  outline-offset: 2px;
+}
+
+/* 樱花2风格 */
+html.theme-sakura2 button:focus,
+html.theme-sakura2 a:focus {
+  outline: 2px solid rgba(73, 80, 87, 0.5);
   outline-offset: 2px;
 }
 
