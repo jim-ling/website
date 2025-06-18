@@ -108,8 +108,9 @@ function createRequest(instance: AxiosInstance) {
             headers: {
                 // 携带 Token
                 'Authorization': token ? `Bearer ${token}` : undefined,
-                'Content-Type': 'application/json'
-                // 'Referrer-Policy': 'strict-origin-when-cross-origin' 
+                'Content-Type': 'application/json',
+                'Referer': 'https://www.seniverse.com/',
+                'Origin': 'https://www.seniverse.com'
             },
             // 请求体
             data: {},

@@ -10,6 +10,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig, loadEnv } from 'vite'
 import svgLoader from 'vite-svg-loader'
+import { tr } from 'element-plus/es/locales.mjs'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -59,6 +60,7 @@ export default defineConfig({
         strictPort: false,
         // 是否自动打开浏览器
         open: true,
+        host: true,
         // 是否允许跨域
         cors: true,
         proxy: {

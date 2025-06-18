@@ -127,6 +127,34 @@ export const leftBarRoutes: RouteRecordRaw[] = [
         ]
     },
     {
+        path: '/today-meal',
+        component: BlogLayout,
+        children: [
+            {
+                path: '',
+                name: 'Meal',
+                meta: {
+                    title: '🥙 吃什么'
+                },
+                component: () => import('@/pages/today-meal/TodayMeal.vue')
+            }
+        ]
+    },
+    {
+        path: '/today-luck',
+        component: BlogLayout,
+        children: [
+            {
+                path: '',
+                name: 'Luck',
+                meta: {
+                    title: '🥙 今日运势'
+                },
+                component: () => import('@/pages/today-luck/TodayLuck.vue')
+            }
+        ]
+    },
+    {
         path: '/about',
         component: BlogLayout,
         children: [

@@ -1,11 +1,7 @@
 <template>
   <div class="floating-nav">
     <!-- 主导航球 -->
-    <div 
-      class="nav-ball" 
-      :class="{ active: isOpen }"
-      @click="toggleNav"
-    >
+    <div class="nav-ball" :class="{ active: isOpen }" @click="toggleNav">
       <div class="nav-icon">
         <transition name="icon-rotate" mode="out-in">
           <div v-if="!isOpen" class="menu-icon">
@@ -21,8 +17,8 @@
     <!-- 导航菜单 -->
     <transition name="nav-expand">
       <div v-if="isOpen" class="nav-menu">
-        <div 
-          v-for="(item, index) in navItems" 
+        <div
+          v-for="(item, index) in navItems"
           :key="item.path"
           class="nav-item"
           :style="{ '--delay': index * 0.1 + 's' }"
@@ -77,6 +73,18 @@ const navItems = [
     description: '优质资源收藏'
   },
   {
+    path: '/today-luck',
+    title: '今日运势',
+    icon: '🔮',
+    description: '道家风水罗盘'
+  },
+  {
+    path: '/today-meal',
+    title: '吃什么',
+    icon: '🥙',
+    description: '今天吃什么'
+  },
+  {
     path: '/about',
     title: '关于我',
     icon: '👨‍💻',
@@ -98,9 +106,12 @@ const navigateTo = (path: string) => {
 }
 
 // 监听路由变化，自动关闭导航
-watch(() => router.currentRoute.value.path, () => {
-  closeNav()
-})
+watch(
+  () => router.currentRoute.value.path,
+  () => {
+    closeNav()
+  }
+)
 </script>
 
 <style scoped>
@@ -283,17 +294,17 @@ watch(() => router.currentRoute.value.path, () => {
     bottom: 1.5rem;
     left: 1.5rem;
   }
-  
+
   .nav-ball {
     width: 56px;
     height: 56px;
   }
-  
+
   .nav-item-content {
     padding: 0.75rem 1rem;
     min-width: 140px;
   }
-  
+
   .nav-item-text {
     font-size: 0.9rem;
   }

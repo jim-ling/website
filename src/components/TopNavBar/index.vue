@@ -123,6 +123,16 @@ const navItems = [
     icon: '🔗'
   },
   {
+    path: '/today-luck',
+    title: '今日运势',
+    icon: '🔮'
+  },
+  {
+    path: '/today-meal',
+    title: '吃什么',
+    icon: '🍽️'
+  },
+  {
     path: '/about',
     title: '关于',
     icon: '👨‍💻'
